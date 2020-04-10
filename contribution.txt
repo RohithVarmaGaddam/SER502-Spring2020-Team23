@@ -1,0 +1,6 @@
+We are planning to divide the work as follows :
+Lexer - Divya
+Parser - Preeti
+Interpreter-
+    > Loops,conditional statements and functions - Rohith
+    > Expressions,Boolean and Unary Operators - Pradeep
