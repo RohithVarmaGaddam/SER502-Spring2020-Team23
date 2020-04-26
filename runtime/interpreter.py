@@ -524,29 +524,10 @@ def eval_arguments(li,tree):
         return []
     return li
 
-data = '''
-fun prime(n){
-    var z = n/2
-    var flag = 0
-    var i = 2
-    while i>=n/2 && flag==0{
-        var rem = n%i
-        if rem==0{
-            flag=1
-            out(n," is not a prime number")
-        }
-        i++
-    }
-    if flag==0{
-        out(n," is a prime number")
-    }
-    send
-}
-var x
-var y = 4%2
-out(y)
-prime(100)
-'''
+data = ""
+with open('../Src/Program.ace', 'r') as file:
+    data = file.read()
+print(data)
 builder = SyntaxTree()
 builder.build(data)
 

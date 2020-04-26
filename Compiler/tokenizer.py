@@ -101,19 +101,3 @@ def test(data,lexer):
         print(tok)
     return tokens
 
-
-data = '''
-var x
-var y = 0
-x = ( y>5 ) ? ("z" : "k")
-out("The pattern by ACE:")
-for(var i=0,i<5,i++){
-s = ""
-for(var j=0,j<5,j++){
-s=s+x
-}
-out(s)
-}'''
-
-Tokens = test(data,lex.lex())
-print(Tokens)
