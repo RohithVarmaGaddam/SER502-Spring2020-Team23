@@ -1,6 +1,6 @@
 import ply.yacc as yacc
 import ply.lex as lex
-import tokenizer
+import Compiler.tokenizer as tokenizer
 
 class SyntaxTree:
     def __init__(self):
@@ -121,9 +121,9 @@ class SyntaxTree:
         def p_assign(p):
             '''assign : ID '=' boolean'''
             p[0] = ('t_assign', p[1], p[3],p.lineno(2))
-        def p_assign_funcall(p):
-            '''assign : ID '=' funcall'''
-            p[0] = ('t_assign', p[1], p[3],p.lineno(2))
+        #def p_assign_funcall(p):
+         #   '''assign : ID '=' funcall'''
+          #  p[0] = ('t_assign', p[1], p[3],p.lineno(2))
 
 
 
