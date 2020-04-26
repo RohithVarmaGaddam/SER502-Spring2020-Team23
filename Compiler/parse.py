@@ -49,29 +49,29 @@ class SyntaxTree:
                 p[0] = ('t_functionlist', p[1], p[2])
             else:
                 p[0] = ('empty')
+        #changes-line 52-Preethi-parse.py
         def p_function(p):
             '''function : FUNCTION  ID  '('  argument  ')'  '{'  block  RETURN  boolean  '}'
                     | FUNCTION ID '(' argument ')' '{' block RETURN '}' '''
             if len(p) == 11:
-                p[0] = ('t_def', p[2], p[4],p[7],p[9])
+                p[0] = ('t_defR', p[2], p[4],p[7],p[9])
             else:
                 p[0] = ('t_def', p[2],p[4],p[7])
         def p_argument(p):
             '''argument : ID  ','  argument
                         | ID'''
             if len(p) == 3:
-                p[0] = ('t_argument', p[1], p[2])
+                p[0] = ('t_arguments', p[1], p[3],p.lineno(1))
             else:
-                p[0] = ('t_argument', p[1])
+                p[0] = ('t_argument', p[1],p.lineno(1))
 
         def p_argument_emp(p):
             '''argument : empty'''
+            p[0] = ('t_empty')
 
         def p_empty(p):
             ''' empty : '''
             pass
-
-
         #BLOCK
         def p_block(p):
             '''block : statement block
@@ -143,9 +143,24 @@ class SyntaxTree:
 
 
         #Funcall
+        
+        #changes-line 146-Preethi-parse.py
+        #Funcall
         def p_funcall(p):
-            '''funcall : ID '(' argument ')' '''
-            p[0] = ('p_funcall',p[1])
+            '''funcall : ID '(' paramlist ')' '''
+            p[0] = ('t_funcall',p[1],p[3],p.lineno(2))
+
+        def p_paramlist(p):
+            '''paramlist : boolean ',' paramlist
+                         | boolean'''
+            if len(p)==4:
+                p[0] = ('t_params',p[1],p[3])
+            else:
+                p[0] = ('t_param',p[1])
+
+        def p_paramEmpty(p):
+            '''paramlist : empty'''
+            p[0] = ('t_empty')
 
 
 
