@@ -78,7 +78,7 @@ def t_newline(t):
 
 
 #literals
-literals = ['+','-','*','/','(',')','{','}','>','<','=','!',',',';',':','?']
+literals = ['+','-','*','/','(',')','{','}','>','<','=','!',',',';',':','?','%']
 
 
 # A string containing ignored characters (spaces and tabs)
