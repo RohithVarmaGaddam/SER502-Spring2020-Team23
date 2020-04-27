@@ -1,6 +1,6 @@
 import ply.yacc as yacc
 import ply.lex as lex
-import tokenizer
+import Compiler.tokenizer as tokenizer
 
 class SyntaxTree:
     def __init__(self):
@@ -121,9 +121,9 @@ class SyntaxTree:
         def p_assign(p):
             '''assign : ID '=' boolean'''
             p[0] = ('t_assign', p[1], p[3],p.lineno(2))
-        def p_assign_funcall(p):
-            '''assign : ID '=' funcall'''
-            p[0] = ('t_assign', p[1], p[3],p.lineno(2))
+        #def p_assign_funcall(p):
+         #   '''assign : ID '=' funcall'''
+          #  p[0] = ('t_assign', p[1], p[3],p.lineno(2))
 
 
 
@@ -253,3 +253,98 @@ class SyntaxTree:
                 p[0] = ('t_boolvalue',True)
             else:
                 p[0] = ('t_boolvalue',False)
+
+#condition
+        def p_condition_gt(p):
+            '''condition : expression '>' expression'''
+            p[0] = ('t_gt',p[1],p[3],p.lineno(2))
+        def p_condition_lt(p):
+            '''condition : expression '<' expression'''
+            p[0] = ('t_lt',p[1],p[3],p.lineno(2))
+        def p_condition_gtEql(p):
+            '''condition : expression GTEQL expression'''
+            p[0] = ('t_gtEql',p[1],p[3],p.lineno(2))
+        def p_condition_ltEql(p):
+            '''condition : expression LTEQL expression'''
+            p[0] = ('t_ltEql',p[1],p[3],p.lineno(2))
+        def p_condition_notEql(p):
+            '''condition : expression NOTEQL expression'''
+            p[0] = ('t_notEql',p[1],p[3],p.lineno(2))
+        def p_condition_bEql(p):
+            '''condition : expression BOOLEQL expression'''
+            p[0] = ('t_bEql',p[1],p[3],p.lineno(2))
+
+
+
+        #Expressions
+        def p_expression_plus(p):
+            '''expression : expression '+' term'''
+            p[0] = ('t_plus',p[1],p[3],p.lineno(2))
+
+        def p_expression_minus(p):
+            '''expression : expression '-' term'''
+            p[0] = ('t_minus',p[1],p[3],p.lineno(2))
+
+        def p_expression_term(p):
+            '''expression : term'''
+            p[0] = ('expression',p[1])
+
+        def p_term_times(p):
+            '''term : term '*' factor1'''
+            p[0] = ('t_multi',p[1],p[3],p.lineno(2))
+
+        def p_term_div(p):
+            '''term : term '/' factor1'''
+            p[0] = ('t_div',p[1] ,p[3],p.lineno(2))
+
+        def p_term_factor(p):
+            'term : factor1'
+            p[0] = ('term',p[1])
+
+        def p_term_mod(p):
+            '''factor1 : factor1 '%' factor'''
+            p[0] = ('t_mod',p[1],p[3],p.lineno(2))
+
+        def p_term_factor1(p):
+            '''factor1 : factor'''
+            p[0] = ('factor1',p[1])
+
+        def p_factor_id(p):
+         'factor : ID'
+         p[0] = ('t_id',p[1],p.lineno(1))
+
+        def p_factor_num(p):
+         'factor : NUMBER'
+         p[0] = ('t_num',p[1])
+
+        def p_factor_string(p):
+            'factor : STRING'
+            p[0] = ('t_string',p[1])
+
+        def p_factor_expr(p):
+            '''factor : '(' expression ')' '''
+            p[0] = ('t_para',p[2])
+
+        def p_factor_ternary(p):
+            '''factor : ternary'''
+            p[0] = p[1]
+        def p_ternay(p):
+            '''ternary : '('  boolean  ')'  '?'  '('  boolean  ':'  boolean ')' '''
+            p[0] = ('t_ternary',p[2],p[6],p[8],p.lineno(1))
+
+        def p_factor_funcall(p):
+            '''factor : funcall'''
+            p[0] = p[1]
+
+        # Error rule for syntax errors
+        def p_error(p):
+            print("Syntax error in input at:"+ str(p.value)+"  and line no:"+ str(p.lineno))
+
+
+
+        lex.lex(module=tokenizer)
+        # Build the parser
+        p = yacc.yacc()
+        result = p.parse(data)
+        #print(result)
+        self.tree = result
