@@ -1,0 +1,3 @@
+var x=0
+var z = x*3+8
+out("the value of z:",z)
