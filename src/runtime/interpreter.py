@@ -1,3 +1,5 @@
+__author__ = 'Rohith Varma Gaddam','Pradeep'
+'''This file contains the evaluator which evaluates the parse tree'''
 import sys
 import os
 currentDirectory = os.getcwd()
@@ -529,7 +531,7 @@ def main(argv):
     if argv[-4:] != ".ace":
         sys.exit("Error :please provide .ace extension file")
     data = ""
-    filepath = os.path.abspath(os.path.join(currentDirectory, '.'))+"\\data\\"+argv
+    filepath = os.path.abspath(os.path.join(currentDirectory, '..'))+"\\data\\"+argv
     with open(filepath, 'r') as file:
         data = file.read()
     print(data)
@@ -537,6 +539,7 @@ def main(argv):
     builder.build(data)
     t = builder.tree
 
+    print("Output of Program file:")
     eval_program(t)
 
 if __name__ == "__main__":
