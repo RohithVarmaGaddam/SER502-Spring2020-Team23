@@ -526,6 +526,8 @@ def eval_arguments(li,tree):
     return li
 
 def main(argv):
+    if argv[-4:] != ".ace":
+        sys.exit("Error :please provide .ace extension file")
     data = ""
     filepath = os.path.abspath(os.path.join(currentDirectory, '.'))+"\\data\\"+argv
     with open(filepath, 'r') as file:
