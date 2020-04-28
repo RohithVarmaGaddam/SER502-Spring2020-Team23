@@ -72,7 +72,6 @@ class Evaluate:
         else:
             self.variable_env[tree[1]] = val
 
-
     #IF
     def eval_if(self,tree):
         b = False
@@ -80,7 +79,6 @@ class Evaluate:
             b = self.eval_or(tree[1])
         elif tree[1][0] == 'boolean':
             b = self.eval_boolean(tree[1])
-
         if b:
             self.eval_block(tree[2])
         else:
@@ -525,12 +523,11 @@ def eval_arguments(li,tree):
     return li
 
 data = ""
-with open('../Src/Program.ace', 'r') as file:
+with open('../data/leapyear.ace', 'r') as file:
     data = file.read()
 print(data)
 builder = SyntaxTree()
 builder.build(data)
-
-#print(builder.tree)
 t = builder.tree
+
 eval_program(t)

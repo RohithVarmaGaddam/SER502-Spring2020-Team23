@@ -1,0 +1,21 @@
+fun primeinrange(num1,num2){
+	var flag = 0
+	for(var i=num1+1, i<num2, i++)
+   	{
+      		flag = 0
+      		for(var j=2, j<=i/2 && flag==0, j++)
+      		{
+         		if i%j == 0
+         		{
+            			flag=1
+         		}
+      		}
+      		if flag==0{
+      		    out(i)
+      		}
+  	}
+}
+
+var num1 = 10
+var num2 = 50
+primeinrange(num1,num2)

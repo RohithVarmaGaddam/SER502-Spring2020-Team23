@@ -1,0 +1,18 @@
+fun prime(n){
+    var z = n/2
+    var flag = 0
+    var i = 2
+    while i>=n/2 && flag==0{
+        var rem = n%i
+        flag = (rem==0) ? (1 : 0)
+        out(i)
+        i++
+    }
+    if flag==0{
+        out(n," is a prime number")
+    }
+}
+var x
+var y = 4%2
+out(y)
+prime(1051)

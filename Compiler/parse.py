@@ -52,7 +52,7 @@ class SyntaxTree:
         #changes-line 52-Preethi-parse.py
         def p_function(p):
             '''function : FUNCTION  ID  '('  argument  ')'  '{'  block  RETURN  boolean  '}'
-                    | FUNCTION ID '(' argument ')' '{' block RETURN '}' '''
+                    | FUNCTION ID '(' argument ')' '{' block  '}' '''
             if len(p) == 11:
                 p[0] = ('t_defR', p[2], p[4],p[7],p[9])
             else:
@@ -60,7 +60,7 @@ class SyntaxTree:
         def p_argument(p):
             '''argument : ID  ','  argument
                         | ID'''
-            if len(p) == 3:
+            if len(p) == 4:
                 p[0] = ('t_arguments', p[1], p[3],p.lineno(1))
             else:
                 p[0] = ('t_argument', p[1],p.lineno(1))

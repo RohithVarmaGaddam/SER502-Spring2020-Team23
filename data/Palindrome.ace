@@ -1,0 +1,19 @@
+var n = 10100100101
+var reversedN = 0
+var remainder
+var originalN
+    
+    originalN = n
+
+    while n != 0 {
+        remainder = n % 10
+        reversedN = reversedN * 10 + remainder
+        n = n/10
+    }
+
+    if originalN == reversedN{
+        out(originalN," is a palindrome.")
+        }
+    else{
+        out(originalN," is not a palindrome.")
+        }

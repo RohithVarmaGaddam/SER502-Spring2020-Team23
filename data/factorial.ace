@@ -1,0 +1,15 @@
+fun factorial(n){
+    var z = n-1
+    var ans
+    if z==1{
+        ans = 1
+    }
+    else{
+        ans = n*factorial(z)
+    }
+    send ans
+}
+var x
+var y = 4/1
+var k = factorial(5)
+out(k)

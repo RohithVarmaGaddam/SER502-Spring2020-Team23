@@ -1,0 +1,23 @@
+fun fibonacci(k) {
+	var n = k
+	var t1 = 0
+	var t2 = 1
+	var nextTerm
+	var ans
+    
+    
+    	out("Fibonacci Series:")
+        if k == 0{
+            out(1) }
+        else{
+            for (var i = 1, i <= n, i++) {
+                nextTerm = t1 + t2
+                t1 = t2
+                t2 = nextTerm;
+                out(i,":",nextTerm)
+                }
+           	}
+ }
+
+var num = 12
+fibonacci(num)

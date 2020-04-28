@@ -1,0 +1,3967 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    NOT
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> functionlist block
+Rule 2     functionlist -> function functionlist
+Rule 3     functionlist -> empty
+Rule 4     function -> FUNCTION ID ( argument ) { block RETURN boolean }
+Rule 5     function -> FUNCTION ID ( argument ) { block }
+Rule 6     argument -> ID , argument
+Rule 7     argument -> ID
+Rule 8     argument -> empty
+Rule 9     empty -> <empty>
+Rule 10    block -> statement block
+Rule 11    block -> statement
+Rule 12    statement -> declaration
+Rule 13    statement -> initialization
+Rule 14    statement -> assign
+Rule 15    statement -> funcall
+Rule 16    statement -> unary
+Rule 17    statement -> while
+Rule 18    statement -> for
+Rule 19    statement -> if
+Rule 20    statement -> print
+Rule 21    declaration -> VARIABLE ID
+Rule 22    initialization -> VARIABLE ID = boolean
+Rule 23    assign -> ID = boolean
+Rule 24    unary -> increment
+Rule 25    unary -> decrement
+Rule 26    increment -> ID INCRMNT
+Rule 27    decrement -> ID DECRMNT
+Rule 28    funcall -> ID ( paramlist )
+Rule 29    paramlist -> boolean , paramlist
+Rule 30    paramlist -> boolean
+Rule 31    paramlist -> empty
+Rule 32    if -> IF boolean { block } elif
+Rule 33    elif -> ELSEIF boolean { block } elif
+Rule 34    elif -> ELSE { block }
+Rule 35    elif -> empty
+Rule 36    while -> WHILE boolean { block }
+Rule 37    for -> FOR ( initialization , boolean , assign ) { block }
+Rule 38    for -> FOR ( initialization , boolean , unary ) { block }
+Rule 39    for -> FOR ID IN RANGE ( expression , expression ) { block }
+Rule 40    print -> PRINT ( plist )
+Rule 41    plist -> pstat , plist
+Rule 42    plist -> pstat
+Rule 43    pstat -> boolean
+Rule 44    boolean -> boolean OR boolterm
+Rule 45    boolean -> boolterm
+Rule 46    boolterm -> boolterm AND boolterm1
+Rule 47    boolterm -> boolterm1
+Rule 48    boolterm1 -> ! boolterm2
+Rule 49    boolterm1 -> boolterm2
+Rule 50    boolterm2 -> condition
+Rule 51    boolterm2 -> expression
+Rule 52    boolterm2 -> FALSE
+Rule 53    boolterm2 -> TRUE
+Rule 54    condition -> expression > expression
+Rule 55    condition -> expression < expression
+Rule 56    condition -> expression GTEQL expression
+Rule 57    condition -> expression LTEQL expression
+Rule 58    condition -> expression NOTEQL expression
+Rule 59    condition -> expression BOOLEQL expression
+Rule 60    expression -> expression + term
+Rule 61    expression -> expression - term
+Rule 62    expression -> term
+Rule 63    term -> term * factor1
+Rule 64    term -> term / factor1
+Rule 65    term -> factor1
+Rule 66    factor1 -> factor1 % factor
+Rule 67    factor1 -> factor
+Rule 68    factor -> ID
+Rule 69    factor -> NUMBER
+Rule 70    factor -> STRING
+Rule 71    factor -> ( expression )
+Rule 72    factor -> ternary
+Rule 73    ternary -> ( boolean ) ? ( boolean : boolean )
+Rule 74    factor -> funcall
+
+Terminals, with rules where they appear
+
+!                    : 48
+%                    : 66
+(                    : 4 5 28 37 38 39 40 71 73 73
+)                    : 4 5 28 37 38 39 40 71 73 73
+*                    : 63
++                    : 60
+,                    : 6 29 37 37 38 38 39 41
+-                    : 61
+/                    : 64
+:                    : 73
+<                    : 55
+=                    : 22 23
+>                    : 54
+?                    : 73
+AND                  : 46
+BOOLEQL              : 59
+DECRMNT              : 27
+ELSE                 : 34
+ELSEIF               : 33
+FALSE                : 52
+FOR                  : 37 38 39
+FUNCTION             : 4 5
+GTEQL                : 56
+ID                   : 4 5 6 7 21 22 23 26 27 28 39 68
+IF                   : 32
+IN                   : 39
+INCRMNT              : 26
+LTEQL                : 57
+NOT                  : 
+NOTEQL               : 58
+NUMBER               : 69
+OR                   : 44
+PRINT                : 40
+RANGE                : 39
+RETURN               : 4
+STRING               : 70
+TRUE                 : 53
+VARIABLE             : 21 22
+WHILE                : 36
+error                : 
+{                    : 4 5 32 33 34 36 37 38 39
+}                    : 4 5 32 33 34 36 37 38 39
+
+Nonterminals, with rules where they appear
+
+argument             : 4 5 6
+assign               : 14 37
+block                : 1 4 5 10 32 33 34 36 37 38 39
+boolean              : 4 22 23 29 30 32 33 36 37 38 43 44 73 73 73
+boolterm             : 44 45 46
+boolterm1            : 46 47
+boolterm2            : 48 49
+condition            : 50
+declaration          : 12
+decrement            : 25
+elif                 : 32 33
+empty                : 3 8 31 35
+expression           : 39 39 51 54 54 55 55 56 56 57 57 58 58 59 59 60 61 71
+factor               : 66 67
+factor1              : 63 64 65 66
+for                  : 18
+funcall              : 15 74
+function             : 2
+functionlist         : 1 2
+if                   : 19
+increment            : 24
+initialization       : 13 37 38
+paramlist            : 28 29
+plist                : 40 41
+print                : 20
+program              : 0
+pstat                : 41 42
+statement            : 10 11
+term                 : 60 61 62 63 64
+ternary              : 72
+unary                : 16 38
+while                : 17
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . functionlist block
+    (2) functionlist -> . function functionlist
+    (3) functionlist -> . empty
+    (4) function -> . FUNCTION ID ( argument ) { block RETURN boolean }
+    (5) function -> . FUNCTION ID ( argument ) { block }
+    (9) empty -> .
+
+    FUNCTION        shift and go to state 5
+    VARIABLE        reduce using rule 9 (empty -> .)
+    ID              reduce using rule 9 (empty -> .)
+    WHILE           reduce using rule 9 (empty -> .)
+    FOR             reduce using rule 9 (empty -> .)
+    IF              reduce using rule 9 (empty -> .)
+    PRINT           reduce using rule 9 (empty -> .)
+
+    program                        shift and go to state 1
+    functionlist                   shift and go to state 2
+    function                       shift and go to state 3
+    empty                          shift and go to state 4
+
+state 1
+
+    (0) S' -> program .
+
+
+
+state 2
+
+    (1) program -> functionlist . block
+    (10) block -> . statement block
+    (11) block -> . statement
+    (12) statement -> . declaration
+    (13) statement -> . initialization
+    (14) statement -> . assign
+    (15) statement -> . funcall
+    (16) statement -> . unary
+    (17) statement -> . while
+    (18) statement -> . for
+    (19) statement -> . if
+    (20) statement -> . print
+    (21) declaration -> . VARIABLE ID
+    (22) initialization -> . VARIABLE ID = boolean
+    (23) assign -> . ID = boolean
+    (28) funcall -> . ID ( paramlist )
+    (24) unary -> . increment
+    (25) unary -> . decrement
+    (36) while -> . WHILE boolean { block }
+    (37) for -> . FOR ( initialization , boolean , assign ) { block }
+    (38) for -> . FOR ( initialization , boolean , unary ) { block }
+    (39) for -> . FOR ID IN RANGE ( expression , expression ) { block }
+    (32) if -> . IF boolean { block } elif
+    (40) print -> . PRINT ( plist )
+    (26) increment -> . ID INCRMNT
+    (27) decrement -> . ID DECRMNT
+
+    VARIABLE        shift and go to state 17
+    ID              shift and go to state 18
+    WHILE           shift and go to state 21
+    FOR             shift and go to state 22
+    IF              shift and go to state 23
+    PRINT           shift and go to state 24
+
+    block                          shift and go to state 6
+    statement                      shift and go to state 7
+    declaration                    shift and go to state 8
+    initialization                 shift and go to state 9
+    assign                         shift and go to state 10
+    funcall                        shift and go to state 11
+    unary                          shift and go to state 12
+    while                          shift and go to state 13
+    for                            shift and go to state 14
+    if                             shift and go to state 15
+    print                          shift and go to state 16
+    increment                      shift and go to state 19
+    decrement                      shift and go to state 20
+
+state 3
+
+    (2) functionlist -> function . functionlist
+    (2) functionlist -> . function functionlist
+    (3) functionlist -> . empty
+    (4) function -> . FUNCTION ID ( argument ) { block RETURN boolean }
+    (5) function -> . FUNCTION ID ( argument ) { block }
+    (9) empty -> .
+
+    FUNCTION        shift and go to state 5
+    VARIABLE        reduce using rule 9 (empty -> .)
+    ID              reduce using rule 9 (empty -> .)
+    WHILE           reduce using rule 9 (empty -> .)
+    FOR             reduce using rule 9 (empty -> .)
+    IF              reduce using rule 9 (empty -> .)
+    PRINT           reduce using rule 9 (empty -> .)
+
+    function                       shift and go to state 3
+    functionlist                   shift and go to state 25
+    empty                          shift and go to state 4
+
+state 4
+
+    (3) functionlist -> empty .
+
+    VARIABLE        reduce using rule 3 (functionlist -> empty .)
+    ID              reduce using rule 3 (functionlist -> empty .)
+    WHILE           reduce using rule 3 (functionlist -> empty .)
+    FOR             reduce using rule 3 (functionlist -> empty .)
+    IF              reduce using rule 3 (functionlist -> empty .)
+    PRINT           reduce using rule 3 (functionlist -> empty .)
+
+
+state 5
+
+    (4) function -> FUNCTION . ID ( argument ) { block RETURN boolean }
+    (5) function -> FUNCTION . ID ( argument ) { block }
+
+    ID              shift and go to state 26
+
+
+state 6
+
+    (1) program -> functionlist block .
+
+    $end            reduce using rule 1 (program -> functionlist block .)
+
+
+state 7
+
+    (10) block -> statement . block
+    (11) block -> statement .
+    (10) block -> . statement block
+    (11) block -> . statement
+    (12) statement -> . declaration
+    (13) statement -> . initialization
+    (14) statement -> . assign
+    (15) statement -> . funcall
+    (16) statement -> . unary
+    (17) statement -> . while
+    (18) statement -> . for
+    (19) statement -> . if
+    (20) statement -> . print
+    (21) declaration -> . VARIABLE ID
+    (22) initialization -> . VARIABLE ID = boolean
+    (23) assign -> . ID = boolean
+    (28) funcall -> . ID ( paramlist )
+    (24) unary -> . increment
+    (25) unary -> . decrement
+    (36) while -> . WHILE boolean { block }
+    (37) for -> . FOR ( initialization , boolean , assign ) { block }
+    (38) for -> . FOR ( initialization , boolean , unary ) { block }
+    (39) for -> . FOR ID IN RANGE ( expression , expression ) { block }
+    (32) if -> . IF boolean { block } elif
+    (40) print -> . PRINT ( plist )
+    (26) increment -> . ID INCRMNT
+    (27) decrement -> . ID DECRMNT
+
+    $end            reduce using rule 11 (block -> statement .)
+    }               reduce using rule 11 (block -> statement .)
+    RETURN          reduce using rule 11 (block -> statement .)
+    VARIABLE        shift and go to state 17
+    ID              shift and go to state 18
+    WHILE           shift and go to state 21
+    FOR             shift and go to state 22
+    IF              shift and go to state 23
+    PRINT           shift and go to state 24
+
+    statement                      shift and go to state 7
+    block                          shift and go to state 27
+    declaration                    shift and go to state 8
+    initialization                 shift and go to state 9
+    assign                         shift and go to state 10
+    funcall                        shift and go to state 11
+    unary                          shift and go to state 12
+    while                          shift and go to state 13
+    for                            shift and go to state 14
+    if                             shift and go to state 15
+    print                          shift and go to state 16
+    increment                      shift and go to state 19
+    decrement                      shift and go to state 20
+
+state 8
+
+    (12) statement -> declaration .
+
+    VARIABLE        reduce using rule 12 (statement -> declaration .)
+    ID              reduce using rule 12 (statement -> declaration .)
+    WHILE           reduce using rule 12 (statement -> declaration .)
+    FOR             reduce using rule 12 (statement -> declaration .)
+    IF              reduce using rule 12 (statement -> declaration .)
+    PRINT           reduce using rule 12 (statement -> declaration .)
+    $end            reduce using rule 12 (statement -> declaration .)
+    }               reduce using rule 12 (statement -> declaration .)
+    RETURN          reduce using rule 12 (statement -> declaration .)
+
+
+state 9
+
+    (13) statement -> initialization .
+
+    VARIABLE        reduce using rule 13 (statement -> initialization .)
+    ID              reduce using rule 13 (statement -> initialization .)
+    WHILE           reduce using rule 13 (statement -> initialization .)
+    FOR             reduce using rule 13 (statement -> initialization .)
+    IF              reduce using rule 13 (statement -> initialization .)
+    PRINT           reduce using rule 13 (statement -> initialization .)
+    $end            reduce using rule 13 (statement -> initialization .)
+    }               reduce using rule 13 (statement -> initialization .)
+    RETURN          reduce using rule 13 (statement -> initialization .)
+
+
+state 10
+
+    (14) statement -> assign .
+
+    VARIABLE        reduce using rule 14 (statement -> assign .)
+    ID              reduce using rule 14 (statement -> assign .)
+    WHILE           reduce using rule 14 (statement -> assign .)
+    FOR             reduce using rule 14 (statement -> assign .)
+    IF              reduce using rule 14 (statement -> assign .)
+    PRINT           reduce using rule 14 (statement -> assign .)
+    $end            reduce using rule 14 (statement -> assign .)
+    }               reduce using rule 14 (statement -> assign .)
+    RETURN          reduce using rule 14 (statement -> assign .)
+
+
+state 11
+
+    (15) statement -> funcall .
+
+    VARIABLE        reduce using rule 15 (statement -> funcall .)
+    ID              reduce using rule 15 (statement -> funcall .)
+    WHILE           reduce using rule 15 (statement -> funcall .)
+    FOR             reduce using rule 15 (statement -> funcall .)
+    IF              reduce using rule 15 (statement -> funcall .)
+    PRINT           reduce using rule 15 (statement -> funcall .)
+    $end            reduce using rule 15 (statement -> funcall .)
+    }               reduce using rule 15 (statement -> funcall .)
+    RETURN          reduce using rule 15 (statement -> funcall .)
+
+
+state 12
+
+    (16) statement -> unary .
+
+    VARIABLE        reduce using rule 16 (statement -> unary .)
+    ID              reduce using rule 16 (statement -> unary .)
+    WHILE           reduce using rule 16 (statement -> unary .)
+    FOR             reduce using rule 16 (statement -> unary .)
+    IF              reduce using rule 16 (statement -> unary .)
+    PRINT           reduce using rule 16 (statement -> unary .)
+    $end            reduce using rule 16 (statement -> unary .)
+    }               reduce using rule 16 (statement -> unary .)
+    RETURN          reduce using rule 16 (statement -> unary .)
+
+
+state 13
+
+    (17) statement -> while .
+
+    VARIABLE        reduce using rule 17 (statement -> while .)
+    ID              reduce using rule 17 (statement -> while .)
+    WHILE           reduce using rule 17 (statement -> while .)
+    FOR             reduce using rule 17 (statement -> while .)
+    IF              reduce using rule 17 (statement -> while .)
+    PRINT           reduce using rule 17 (statement -> while .)
+    $end            reduce using rule 17 (statement -> while .)
+    }               reduce using rule 17 (statement -> while .)
+    RETURN          reduce using rule 17 (statement -> while .)
+
+
+state 14
+
+    (18) statement -> for .
+
+    VARIABLE        reduce using rule 18 (statement -> for .)
+    ID              reduce using rule 18 (statement -> for .)
+    WHILE           reduce using rule 18 (statement -> for .)
+    FOR             reduce using rule 18 (statement -> for .)
+    IF              reduce using rule 18 (statement -> for .)
+    PRINT           reduce using rule 18 (statement -> for .)
+    $end            reduce using rule 18 (statement -> for .)
+    }               reduce using rule 18 (statement -> for .)
+    RETURN          reduce using rule 18 (statement -> for .)
+
+
+state 15
+
+    (19) statement -> if .
+
+    VARIABLE        reduce using rule 19 (statement -> if .)
+    ID              reduce using rule 19 (statement -> if .)
+    WHILE           reduce using rule 19 (statement -> if .)
+    FOR             reduce using rule 19 (statement -> if .)
+    IF              reduce using rule 19 (statement -> if .)
+    PRINT           reduce using rule 19 (statement -> if .)
+    $end            reduce using rule 19 (statement -> if .)
+    }               reduce using rule 19 (statement -> if .)
+    RETURN          reduce using rule 19 (statement -> if .)
+
+
+state 16
+
+    (20) statement -> print .
+
+    VARIABLE        reduce using rule 20 (statement -> print .)
+    ID              reduce using rule 20 (statement -> print .)
+    WHILE           reduce using rule 20 (statement -> print .)
+    FOR             reduce using rule 20 (statement -> print .)
+    IF              reduce using rule 20 (statement -> print .)
+    PRINT           reduce using rule 20 (statement -> print .)
+    $end            reduce using rule 20 (statement -> print .)
+    }               reduce using rule 20 (statement -> print .)
+    RETURN          reduce using rule 20 (statement -> print .)
+
+
+state 17
+
+    (21) declaration -> VARIABLE . ID
+    (22) initialization -> VARIABLE . ID = boolean
+
+    ID              shift and go to state 28
+
+
+state 18
+
+    (23) assign -> ID . = boolean
+    (28) funcall -> ID . ( paramlist )
+    (26) increment -> ID . INCRMNT
+    (27) decrement -> ID . DECRMNT
+
+    =               shift and go to state 29
+    (               shift and go to state 30
+    INCRMNT         shift and go to state 31
+    DECRMNT         shift and go to state 32
+
+
+state 19
+
+    (24) unary -> increment .
+
+    VARIABLE        reduce using rule 24 (unary -> increment .)
+    ID              reduce using rule 24 (unary -> increment .)
+    WHILE           reduce using rule 24 (unary -> increment .)
+    FOR             reduce using rule 24 (unary -> increment .)
+    IF              reduce using rule 24 (unary -> increment .)
+    PRINT           reduce using rule 24 (unary -> increment .)
+    $end            reduce using rule 24 (unary -> increment .)
+    }               reduce using rule 24 (unary -> increment .)
+    RETURN          reduce using rule 24 (unary -> increment .)
+    )               reduce using rule 24 (unary -> increment .)
+
+
+state 20
+
+    (25) unary -> decrement .
+
+    VARIABLE        reduce using rule 25 (unary -> decrement .)
+    ID              reduce using rule 25 (unary -> decrement .)
+    WHILE           reduce using rule 25 (unary -> decrement .)
+    FOR             reduce using rule 25 (unary -> decrement .)
+    IF              reduce using rule 25 (unary -> decrement .)
+    PRINT           reduce using rule 25 (unary -> decrement .)
+    $end            reduce using rule 25 (unary -> decrement .)
+    }               reduce using rule 25 (unary -> decrement .)
+    RETURN          reduce using rule 25 (unary -> decrement .)
+    )               reduce using rule 25 (unary -> decrement .)
+
+
+state 21
+
+    (36) while -> WHILE . boolean { block }
+    (44) boolean -> . boolean OR boolterm
+    (45) boolean -> . boolterm
+    (46) boolterm -> . boolterm AND boolterm1
+    (47) boolterm -> . boolterm1
+    (48) boolterm1 -> . ! boolterm2
+    (49) boolterm1 -> . boolterm2
+    (50) boolterm2 -> . condition
+    (51) boolterm2 -> . expression
+    (52) boolterm2 -> . FALSE
+    (53) boolterm2 -> . TRUE
+    (54) condition -> . expression > expression
+    (55) condition -> . expression < expression
+    (56) condition -> . expression GTEQL expression
+    (57) condition -> . expression LTEQL expression
+    (58) condition -> . expression NOTEQL expression
+    (59) condition -> . expression BOOLEQL expression
+    (60) expression -> . expression + term
+    (61) expression -> . expression - term
+    (62) expression -> . term
+    (63) term -> . term * factor1
+    (64) term -> . term / factor1
+    (65) term -> . factor1
+    (66) factor1 -> . factor1 % factor
+    (67) factor1 -> . factor
+    (68) factor -> . ID
+    (69) factor -> . NUMBER
+    (70) factor -> . STRING
+    (71) factor -> . ( expression )
+    (72) factor -> . ternary
+    (74) factor -> . funcall
+    (73) ternary -> . ( boolean ) ? ( boolean : boolean )
+    (28) funcall -> . ID ( paramlist )
+
+    !               shift and go to state 36
+    FALSE           shift and go to state 40
+    TRUE            shift and go to state 41
+    ID              shift and go to state 45
+    NUMBER          shift and go to state 46
+    STRING          shift and go to state 47
+    (               shift and go to state 48
+
+    boolean                        shift and go to state 33
+    boolterm                       shift and go to state 34
+    boolterm1                      shift and go to state 35
+    boolterm2                      shift and go to state 37
+    condition                      shift and go to state 38
+    expression                     shift and go to state 39
+    term                           shift and go to state 42
+    factor1                        shift and go to state 43
+    factor                         shift and go to state 44
+    ternary                        shift and go to state 49
+    funcall                        shift and go to state 50
+
+state 22
+
+    (37) for -> FOR . ( initialization , boolean , assign ) { block }
+    (38) for -> FOR . ( initialization , boolean , unary ) { block }
+    (39) for -> FOR . ID IN RANGE ( expression , expression ) { block }
+
+    (               shift and go to state 51
+    ID              shift and go to state 52
+
+
+state 23
+
+    (32) if -> IF . boolean { block } elif
+    (44) boolean -> . boolean OR boolterm
+    (45) boolean -> . boolterm
+    (46) boolterm -> . boolterm AND boolterm1
+    (47) boolterm -> . boolterm1
+    (48) boolterm1 -> . ! boolterm2
+    (49) boolterm1 -> . boolterm2
+    (50) boolterm2 -> . condition
+    (51) boolterm2 -> . expression
+    (52) boolterm2 -> . FALSE
+    (53) boolterm2 -> . TRUE
+    (54) condition -> . expression > expression
+    (55) condition -> . expression < expression
+    (56) condition -> . expression GTEQL expression
+    (57) condition -> . expression LTEQL expression
+    (58) condition -> . expression NOTEQL expression
+    (59) condition -> . expression BOOLEQL expression
+    (60) expression -> . expression + term
+    (61) expression -> . expression - term
+    (62) expression -> . term
+    (63) term -> . term * factor1
+    (64) term -> . term / factor1
+    (65) term -> . factor1
+    (66) factor1 -> . factor1 % factor
+    (67) factor1 -> . factor
+    (68) factor -> . ID
+    (69) factor -> . NUMBER
+    (70) factor -> . STRING
+    (71) factor -> . ( expression )
+    (72) factor -> . ternary
+    (74) factor -> . funcall
+    (73) ternary -> . ( boolean ) ? ( boolean : boolean )
+    (28) funcall -> . ID ( paramlist )
+
+    !               shift and go to state 36
+    FALSE           shift and go to state 40
+    TRUE            shift and go to state 41
+    ID              shift and go to state 45
+    NUMBER          shift and go to state 46
+    STRING          shift and go to state 47
+    (               shift and go to state 48
+
+    boolean                        shift and go to state 53
+    boolterm                       shift and go to state 34
+    boolterm1                      shift and go to state 35
+    boolterm2                      shift and go to state 37
+    condition                      shift and go to state 38
+    expression                     shift and go to state 39
+    term                           shift and go to state 42
+    factor1                        shift and go to state 43
+    factor                         shift and go to state 44
+    ternary                        shift and go to state 49
+    funcall                        shift and go to state 50
+
+state 24
+
+    (40) print -> PRINT . ( plist )
+
+    (               shift and go to state 54
+
+
+state 25
+
+    (2) functionlist -> function functionlist .
+
+    VARIABLE        reduce using rule 2 (functionlist -> function functionlist .)
+    ID              reduce using rule 2 (functionlist -> function functionlist .)
+    WHILE           reduce using rule 2 (functionlist -> function functionlist .)
+    FOR             reduce using rule 2 (functionlist -> function functionlist .)
+    IF              reduce using rule 2 (functionlist -> function functionlist .)
+    PRINT           reduce using rule 2 (functionlist -> function functionlist .)
+
+
+state 26
+
+    (4) function -> FUNCTION ID . ( argument ) { block RETURN boolean }
+    (5) function -> FUNCTION ID . ( argument ) { block }
+
+    (               shift and go to state 55
+
+
+state 27
+
+    (10) block -> statement block .
+
+    $end            reduce using rule 10 (block -> statement block .)
+    }               reduce using rule 10 (block -> statement block .)
+    RETURN          reduce using rule 10 (block -> statement block .)
+
+
+state 28
+
+    (21) declaration -> VARIABLE ID .
+    (22) initialization -> VARIABLE ID . = boolean
+
+    VARIABLE        reduce using rule 21 (declaration -> VARIABLE ID .)
+    ID              reduce using rule 21 (declaration -> VARIABLE ID .)
+    WHILE           reduce using rule 21 (declaration -> VARIABLE ID .)
+    FOR             reduce using rule 21 (declaration -> VARIABLE ID .)
+    IF              reduce using rule 21 (declaration -> VARIABLE ID .)
+    PRINT           reduce using rule 21 (declaration -> VARIABLE ID .)
+    $end            reduce using rule 21 (declaration -> VARIABLE ID .)
+    }               reduce using rule 21 (declaration -> VARIABLE ID .)
+    RETURN          reduce using rule 21 (declaration -> VARIABLE ID .)
+    =               shift and go to state 56
+
+
+state 29
+
+    (23) assign -> ID = . boolean
+    (44) boolean -> . boolean OR boolterm
+    (45) boolean -> . boolterm
+    (46) boolterm -> . boolterm AND boolterm1
+    (47) boolterm -> . boolterm1
+    (48) boolterm1 -> . ! boolterm2
+    (49) boolterm1 -> . boolterm2
+    (50) boolterm2 -> . condition
+    (51) boolterm2 -> . expression
+    (52) boolterm2 -> . FALSE
+    (53) boolterm2 -> . TRUE
+    (54) condition -> . expression > expression
+    (55) condition -> . expression < expression
+    (56) condition -> . expression GTEQL expression
+    (57) condition -> . expression LTEQL expression
+    (58) condition -> . expression NOTEQL expression
+    (59) condition -> . expression BOOLEQL expression
+    (60) expression -> . expression + term
+    (61) expression -> . expression - term
+    (62) expression -> . term
+    (63) term -> . term * factor1
+    (64) term -> . term / factor1
+    (65) term -> . factor1
+    (66) factor1 -> . factor1 % factor
+    (67) factor1 -> . factor
+    (68) factor -> . ID
+    (69) factor -> . NUMBER
+    (70) factor -> . STRING
+    (71) factor -> . ( expression )
+    (72) factor -> . ternary
+    (74) factor -> . funcall
+    (73) ternary -> . ( boolean ) ? ( boolean : boolean )
+    (28) funcall -> . ID ( paramlist )
+
+    !               shift and go to state 36
+    FALSE           shift and go to state 40
+    TRUE            shift and go to state 41
+    ID              shift and go to state 45
+    NUMBER          shift and go to state 46
+    STRING          shift and go to state 47
+    (               shift and go to state 48
+
+    boolean                        shift and go to state 57
+    boolterm                       shift and go to state 34
+    boolterm1                      shift and go to state 35
+    boolterm2                      shift and go to state 37
+    condition                      shift and go to state 38
+    expression                     shift and go to state 39
+    term                           shift and go to state 42
+    factor1                        shift and go to state 43
+    factor                         shift and go to state 44
+    ternary                        shift and go to state 49
+    funcall                        shift and go to state 50
+
+state 30
+
+    (28) funcall -> ID ( . paramlist )
+    (29) paramlist -> . boolean , paramlist
+    (30) paramlist -> . boolean
+    (31) paramlist -> . empty
+    (44) boolean -> . boolean OR boolterm
+    (45) boolean -> . boolterm
+    (9) empty -> .
+    (46) boolterm -> . boolterm AND boolterm1
+    (47) boolterm -> . boolterm1
+    (48) boolterm1 -> . ! boolterm2
+    (49) boolterm1 -> . boolterm2
+    (50) boolterm2 -> . condition
+    (51) boolterm2 -> . expression
+    (52) boolterm2 -> . FALSE
+    (53) boolterm2 -> . TRUE
+    (54) condition -> . expression > expression
+    (55) condition -> . expression < expression
+    (56) condition -> . expression GTEQL expression
+    (57) condition -> . expression LTEQL expression
+    (58) condition -> . expression NOTEQL expression
+    (59) condition -> . expression BOOLEQL expression
+    (60) expression -> . expression + term
+    (61) expression -> . expression - term
+    (62) expression -> . term
+    (63) term -> . term * factor1
+    (64) term -> . term / factor1
+    (65) term -> . factor1
+    (66) factor1 -> . factor1 % factor
+    (67) factor1 -> . factor
+    (68) factor -> . ID
+    (69) factor -> . NUMBER
+    (70) factor -> . STRING
+    (71) factor -> . ( expression )
+    (72) factor -> . ternary
+    (74) factor -> . funcall
+    (73) ternary -> . ( boolean ) ? ( boolean : boolean )
+    (28) funcall -> . ID ( paramlist )
+
+    )               reduce using rule 9 (empty -> .)
+    !               shift and go to state 36
+    FALSE           shift and go to state 40
+    TRUE            shift and go to state 41
+    ID              shift and go to state 45
+    NUMBER          shift and go to state 46
+    STRING          shift and go to state 47
+    (               shift and go to state 48
+
+    paramlist                      shift and go to state 58
+    boolean                        shift and go to state 59
+    empty                          shift and go to state 60
+    boolterm                       shift and go to state 34
+    boolterm1                      shift and go to state 35
+    boolterm2                      shift and go to state 37
+    condition                      shift and go to state 38
+    expression                     shift and go to state 39
+    term                           shift and go to state 42
+    factor1                        shift and go to state 43
+    factor                         shift and go to state 44
+    ternary                        shift and go to state 49
+    funcall                        shift and go to state 50
+
+state 31
+
+    (26) increment -> ID INCRMNT .
+
+    VARIABLE        reduce using rule 26 (increment -> ID INCRMNT .)
+    ID              reduce using rule 26 (increment -> ID INCRMNT .)
+    WHILE           reduce using rule 26 (increment -> ID INCRMNT .)
+    FOR             reduce using rule 26 (increment -> ID INCRMNT .)
+    IF              reduce using rule 26 (increment -> ID INCRMNT .)
+    PRINT           reduce using rule 26 (increment -> ID INCRMNT .)
+    $end            reduce using rule 26 (increment -> ID INCRMNT .)
+    }               reduce using rule 26 (increment -> ID INCRMNT .)
+    RETURN          reduce using rule 26 (increment -> ID INCRMNT .)
+    )               reduce using rule 26 (increment -> ID INCRMNT .)
+
+
+state 32
+
+    (27) decrement -> ID DECRMNT .
+
+    VARIABLE        reduce using rule 27 (decrement -> ID DECRMNT .)
+    ID              reduce using rule 27 (decrement -> ID DECRMNT .)
+    WHILE           reduce using rule 27 (decrement -> ID DECRMNT .)
+    FOR             reduce using rule 27 (decrement -> ID DECRMNT .)
+    IF              reduce using rule 27 (decrement -> ID DECRMNT .)
+    PRINT           reduce using rule 27 (decrement -> ID DECRMNT .)
+    $end            reduce using rule 27 (decrement -> ID DECRMNT .)
+    }               reduce using rule 27 (decrement -> ID DECRMNT .)
+    RETURN          reduce using rule 27 (decrement -> ID DECRMNT .)
+    )               reduce using rule 27 (decrement -> ID DECRMNT .)
+
+
+state 33
+
+    (36) while -> WHILE boolean . { block }
+    (44) boolean -> boolean . OR boolterm
+
+    {               shift and go to state 61
+    OR              shift and go to state 62
+
+
+state 34
+
+    (45) boolean -> boolterm .
+    (46) boolterm -> boolterm . AND boolterm1
+
+    {               reduce using rule 45 (boolean -> boolterm .)
+    OR              reduce using rule 45 (boolean -> boolterm .)
+    VARIABLE        reduce using rule 45 (boolean -> boolterm .)
+    ID              reduce using rule 45 (boolean -> boolterm .)
+    WHILE           reduce using rule 45 (boolean -> boolterm .)
+    FOR             reduce using rule 45 (boolean -> boolterm .)
+    IF              reduce using rule 45 (boolean -> boolterm .)
+    PRINT           reduce using rule 45 (boolean -> boolterm .)
+    $end            reduce using rule 45 (boolean -> boolterm .)
+    }               reduce using rule 45 (boolean -> boolterm .)
+    RETURN          reduce using rule 45 (boolean -> boolterm .)
+    )               reduce using rule 45 (boolean -> boolterm .)
+    ,               reduce using rule 45 (boolean -> boolterm .)
+    :               reduce using rule 45 (boolean -> boolterm .)
+    AND             shift and go to state 63
+
+
+state 35
+
+    (47) boolterm -> boolterm1 .
+
+    AND             reduce using rule 47 (boolterm -> boolterm1 .)
+    {               reduce using rule 47 (boolterm -> boolterm1 .)
+    OR              reduce using rule 47 (boolterm -> boolterm1 .)
+    VARIABLE        reduce using rule 47 (boolterm -> boolterm1 .)
+    ID              reduce using rule 47 (boolterm -> boolterm1 .)
+    WHILE           reduce using rule 47 (boolterm -> boolterm1 .)
+    FOR             reduce using rule 47 (boolterm -> boolterm1 .)
+    IF              reduce using rule 47 (boolterm -> boolterm1 .)
+    PRINT           reduce using rule 47 (boolterm -> boolterm1 .)
+    $end            reduce using rule 47 (boolterm -> boolterm1 .)
+    }               reduce using rule 47 (boolterm -> boolterm1 .)
+    RETURN          reduce using rule 47 (boolterm -> boolterm1 .)
+    )               reduce using rule 47 (boolterm -> boolterm1 .)
+    ,               reduce using rule 47 (boolterm -> boolterm1 .)
+    :               reduce using rule 47 (boolterm -> boolterm1 .)
+
+
+state 36
+
+    (48) boolterm1 -> ! . boolterm2
+    (50) boolterm2 -> . condition
+    (51) boolterm2 -> . expression
+    (52) boolterm2 -> . FALSE
+    (53) boolterm2 -> . TRUE
+    (54) condition -> . expression > expression
+    (55) condition -> . expression < expression
+    (56) condition -> . expression GTEQL expression
+    (57) condition -> . expression LTEQL expression
+    (58) condition -> . expression NOTEQL expression
+    (59) condition -> . expression BOOLEQL expression
+    (60) expression -> . expression + term
+    (61) expression -> . expression - term
+    (62) expression -> . term
+    (63) term -> . term * factor1
+    (64) term -> . term / factor1
+    (65) term -> . factor1
+    (66) factor1 -> . factor1 % factor
+    (67) factor1 -> . factor
+    (68) factor -> . ID
+    (69) factor -> . NUMBER
+    (70) factor -> . STRING
+    (71) factor -> . ( expression )
+    (72) factor -> . ternary
+    (74) factor -> . funcall
+    (73) ternary -> . ( boolean ) ? ( boolean : boolean )
+    (28) funcall -> . ID ( paramlist )
+
+    FALSE           shift and go to state 40
+    TRUE            shift and go to state 41
+    ID              shift and go to state 45
+    NUMBER          shift and go to state 46
+    STRING          shift and go to state 47
+    (               shift and go to state 48
+
+    boolterm2                      shift and go to state 64
+    condition                      shift and go to state 38
+    expression                     shift and go to state 39
+    term                           shift and go to state 42
+    factor1                        shift and go to state 43
+    factor                         shift and go to state 44
+    ternary                        shift and go to state 49
+    funcall                        shift and go to state 50
+
+state 37
+
+    (49) boolterm1 -> boolterm2 .
+
+    AND             reduce using rule 49 (boolterm1 -> boolterm2 .)
+    {               reduce using rule 49 (boolterm1 -> boolterm2 .)
+    OR              reduce using rule 49 (boolterm1 -> boolterm2 .)
+    VARIABLE        reduce using rule 49 (boolterm1 -> boolterm2 .)
+    ID              reduce using rule 49 (boolterm1 -> boolterm2 .)
+    WHILE           reduce using rule 49 (boolterm1 -> boolterm2 .)
+    FOR             reduce using rule 49 (boolterm1 -> boolterm2 .)
+    IF              reduce using rule 49 (boolterm1 -> boolterm2 .)
+    PRINT           reduce using rule 49 (boolterm1 -> boolterm2 .)
+    $end            reduce using rule 49 (boolterm1 -> boolterm2 .)
+    }               reduce using rule 49 (boolterm1 -> boolterm2 .)
+    RETURN          reduce using rule 49 (boolterm1 -> boolterm2 .)
+    )               reduce using rule 49 (boolterm1 -> boolterm2 .)
+    ,               reduce using rule 49 (boolterm1 -> boolterm2 .)
+    :               reduce using rule 49 (boolterm1 -> boolterm2 .)
+
+
+state 38
+
+    (50) boolterm2 -> condition .
+
+    AND             reduce using rule 50 (boolterm2 -> condition .)
+    {               reduce using rule 50 (boolterm2 -> condition .)
+    OR              reduce using rule 50 (boolterm2 -> condition .)
+    VARIABLE        reduce using rule 50 (boolterm2 -> condition .)
+    ID              reduce using rule 50 (boolterm2 -> condition .)
+    WHILE           reduce using rule 50 (boolterm2 -> condition .)
+    FOR             reduce using rule 50 (boolterm2 -> condition .)
+    IF              reduce using rule 50 (boolterm2 -> condition .)
+    PRINT           reduce using rule 50 (boolterm2 -> condition .)
+    $end            reduce using rule 50 (boolterm2 -> condition .)
+    }               reduce using rule 50 (boolterm2 -> condition .)
+    RETURN          reduce using rule 50 (boolterm2 -> condition .)
+    )               reduce using rule 50 (boolterm2 -> condition .)
+    ,               reduce using rule 50 (boolterm2 -> condition .)
+    :               reduce using rule 50 (boolterm2 -> condition .)
+
+
+state 39
+
+    (51) boolterm2 -> expression .
+    (54) condition -> expression . > expression
+    (55) condition -> expression . < expression
+    (56) condition -> expression . GTEQL expression
+    (57) condition -> expression . LTEQL expression
+    (58) condition -> expression . NOTEQL expression
+    (59) condition -> expression . BOOLEQL expression
+    (60) expression -> expression . + term
+    (61) expression -> expression . - term
+
+    AND             reduce using rule 51 (boolterm2 -> expression .)
+    {               reduce using rule 51 (boolterm2 -> expression .)
+    OR              reduce using rule 51 (boolterm2 -> expression .)
+    VARIABLE        reduce using rule 51 (boolterm2 -> expression .)
+    ID              reduce using rule 51 (boolterm2 -> expression .)
+    WHILE           reduce using rule 51 (boolterm2 -> expression .)
+    FOR             reduce using rule 51 (boolterm2 -> expression .)
+    IF              reduce using rule 51 (boolterm2 -> expression .)
+    PRINT           reduce using rule 51 (boolterm2 -> expression .)
+    $end            reduce using rule 51 (boolterm2 -> expression .)
+    }               reduce using rule 51 (boolterm2 -> expression .)
+    RETURN          reduce using rule 51 (boolterm2 -> expression .)
+    )               reduce using rule 51 (boolterm2 -> expression .)
+    ,               reduce using rule 51 (boolterm2 -> expression .)
+    :               reduce using rule 51 (boolterm2 -> expression .)
+    >               shift and go to state 65
+    <               shift and go to state 66
+    GTEQL           shift and go to state 67
+    LTEQL           shift and go to state 68
+    NOTEQL          shift and go to state 69
+    BOOLEQL         shift and go to state 70
+    +               shift and go to state 71
+    -               shift and go to state 72
+
+
+state 40
+
+    (52) boolterm2 -> FALSE .
+
+    AND             reduce using rule 52 (boolterm2 -> FALSE .)
+    {               reduce using rule 52 (boolterm2 -> FALSE .)
+    OR              reduce using rule 52 (boolterm2 -> FALSE .)
+    VARIABLE        reduce using rule 52 (boolterm2 -> FALSE .)
+    ID              reduce using rule 52 (boolterm2 -> FALSE .)
+    WHILE           reduce using rule 52 (boolterm2 -> FALSE .)
+    FOR             reduce using rule 52 (boolterm2 -> FALSE .)
+    IF              reduce using rule 52 (boolterm2 -> FALSE .)
+    PRINT           reduce using rule 52 (boolterm2 -> FALSE .)
+    $end            reduce using rule 52 (boolterm2 -> FALSE .)
+    }               reduce using rule 52 (boolterm2 -> FALSE .)
+    RETURN          reduce using rule 52 (boolterm2 -> FALSE .)
+    )               reduce using rule 52 (boolterm2 -> FALSE .)
+    ,               reduce using rule 52 (boolterm2 -> FALSE .)
+    :               reduce using rule 52 (boolterm2 -> FALSE .)
+
+
+state 41
+
+    (53) boolterm2 -> TRUE .
+
+    AND             reduce using rule 53 (boolterm2 -> TRUE .)
+    {               reduce using rule 53 (boolterm2 -> TRUE .)
+    OR              reduce using rule 53 (boolterm2 -> TRUE .)
+    VARIABLE        reduce using rule 53 (boolterm2 -> TRUE .)
+    ID              reduce using rule 53 (boolterm2 -> TRUE .)
+    WHILE           reduce using rule 53 (boolterm2 -> TRUE .)
+    FOR             reduce using rule 53 (boolterm2 -> TRUE .)
+    IF              reduce using rule 53 (boolterm2 -> TRUE .)
+    PRINT           reduce using rule 53 (boolterm2 -> TRUE .)
+    $end            reduce using rule 53 (boolterm2 -> TRUE .)
+    }               reduce using rule 53 (boolterm2 -> TRUE .)
+    RETURN          reduce using rule 53 (boolterm2 -> TRUE .)
+    )               reduce using rule 53 (boolterm2 -> TRUE .)
+    ,               reduce using rule 53 (boolterm2 -> TRUE .)
+    :               reduce using rule 53 (boolterm2 -> TRUE .)
+
+
+state 42
+
+    (62) expression -> term .
+    (63) term -> term . * factor1
+    (64) term -> term . / factor1
+
+    >               reduce using rule 62 (expression -> term .)
+    <               reduce using rule 62 (expression -> term .)
+    GTEQL           reduce using rule 62 (expression -> term .)
+    LTEQL           reduce using rule 62 (expression -> term .)
+    NOTEQL          reduce using rule 62 (expression -> term .)
+    BOOLEQL         reduce using rule 62 (expression -> term .)
+    +               reduce using rule 62 (expression -> term .)
+    -               reduce using rule 62 (expression -> term .)
+    AND             reduce using rule 62 (expression -> term .)
+    {               reduce using rule 62 (expression -> term .)
+    OR              reduce using rule 62 (expression -> term .)
+    VARIABLE        reduce using rule 62 (expression -> term .)
+    ID              reduce using rule 62 (expression -> term .)
+    WHILE           reduce using rule 62 (expression -> term .)
+    FOR             reduce using rule 62 (expression -> term .)
+    IF              reduce using rule 62 (expression -> term .)
+    PRINT           reduce using rule 62 (expression -> term .)
+    $end            reduce using rule 62 (expression -> term .)
+    }               reduce using rule 62 (expression -> term .)
+    RETURN          reduce using rule 62 (expression -> term .)
+    )               reduce using rule 62 (expression -> term .)
+    ,               reduce using rule 62 (expression -> term .)
+    :               reduce using rule 62 (expression -> term .)
+    *               shift and go to state 73
+    /               shift and go to state 74
+
+
+state 43
+
+    (65) term -> factor1 .
+    (66) factor1 -> factor1 . % factor
+
+    *               reduce using rule 65 (term -> factor1 .)
+    /               reduce using rule 65 (term -> factor1 .)
+    >               reduce using rule 65 (term -> factor1 .)
+    <               reduce using rule 65 (term -> factor1 .)
+    GTEQL           reduce using rule 65 (term -> factor1 .)
+    LTEQL           reduce using rule 65 (term -> factor1 .)
+    NOTEQL          reduce using rule 65 (term -> factor1 .)
+    BOOLEQL         reduce using rule 65 (term -> factor1 .)
+    +               reduce using rule 65 (term -> factor1 .)
+    -               reduce using rule 65 (term -> factor1 .)
+    AND             reduce using rule 65 (term -> factor1 .)
+    {               reduce using rule 65 (term -> factor1 .)
+    OR              reduce using rule 65 (term -> factor1 .)
+    VARIABLE        reduce using rule 65 (term -> factor1 .)
+    ID              reduce using rule 65 (term -> factor1 .)
+    WHILE           reduce using rule 65 (term -> factor1 .)
+    FOR             reduce using rule 65 (term -> factor1 .)
+    IF              reduce using rule 65 (term -> factor1 .)
+    PRINT           reduce using rule 65 (term -> factor1 .)
+    $end            reduce using rule 65 (term -> factor1 .)
+    }               reduce using rule 65 (term -> factor1 .)
+    RETURN          reduce using rule 65 (term -> factor1 .)
+    )               reduce using rule 65 (term -> factor1 .)
+    ,               reduce using rule 65 (term -> factor1 .)
+    :               reduce using rule 65 (term -> factor1 .)
+    %               shift and go to state 75
+
+
+state 44
+
+    (67) factor1 -> factor .
+
+    %               reduce using rule 67 (factor1 -> factor .)
+    *               reduce using rule 67 (factor1 -> factor .)
+    /               reduce using rule 67 (factor1 -> factor .)
+    >               reduce using rule 67 (factor1 -> factor .)
+    <               reduce using rule 67 (factor1 -> factor .)
+    GTEQL           reduce using rule 67 (factor1 -> factor .)
+    LTEQL           reduce using rule 67 (factor1 -> factor .)
+    NOTEQL          reduce using rule 67 (factor1 -> factor .)
+    BOOLEQL         reduce using rule 67 (factor1 -> factor .)
+    +               reduce using rule 67 (factor1 -> factor .)
+    -               reduce using rule 67 (factor1 -> factor .)
+    AND             reduce using rule 67 (factor1 -> factor .)
+    {               reduce using rule 67 (factor1 -> factor .)
+    OR              reduce using rule 67 (factor1 -> factor .)
+    VARIABLE        reduce using rule 67 (factor1 -> factor .)
+    ID              reduce using rule 67 (factor1 -> factor .)
+    WHILE           reduce using rule 67 (factor1 -> factor .)
+    FOR             reduce using rule 67 (factor1 -> factor .)
+    IF              reduce using rule 67 (factor1 -> factor .)
+    PRINT           reduce using rule 67 (factor1 -> factor .)
+    $end            reduce using rule 67 (factor1 -> factor .)
+    }               reduce using rule 67 (factor1 -> factor .)
+    RETURN          reduce using rule 67 (factor1 -> factor .)
+    )               reduce using rule 67 (factor1 -> factor .)
+    ,               reduce using rule 67 (factor1 -> factor .)
+    :               reduce using rule 67 (factor1 -> factor .)
+
+
+state 45
+
+    (68) factor -> ID .
+    (28) funcall -> ID . ( paramlist )
+
+    %               reduce using rule 68 (factor -> ID .)
+    *               reduce using rule 68 (factor -> ID .)
+    /               reduce using rule 68 (factor -> ID .)
+    >               reduce using rule 68 (factor -> ID .)
+    <               reduce using rule 68 (factor -> ID .)
+    GTEQL           reduce using rule 68 (factor -> ID .)
+    LTEQL           reduce using rule 68 (factor -> ID .)
+    NOTEQL          reduce using rule 68 (factor -> ID .)
+    BOOLEQL         reduce using rule 68 (factor -> ID .)
+    +               reduce using rule 68 (factor -> ID .)
+    -               reduce using rule 68 (factor -> ID .)
+    AND             reduce using rule 68 (factor -> ID .)
+    {               reduce using rule 68 (factor -> ID .)
+    OR              reduce using rule 68 (factor -> ID .)
+    VARIABLE        reduce using rule 68 (factor -> ID .)
+    ID              reduce using rule 68 (factor -> ID .)
+    WHILE           reduce using rule 68 (factor -> ID .)
+    FOR             reduce using rule 68 (factor -> ID .)
+    IF              reduce using rule 68 (factor -> ID .)
+    PRINT           reduce using rule 68 (factor -> ID .)
+    $end            reduce using rule 68 (factor -> ID .)
+    }               reduce using rule 68 (factor -> ID .)
+    RETURN          reduce using rule 68 (factor -> ID .)
+    )               reduce using rule 68 (factor -> ID .)
+    ,               reduce using rule 68 (factor -> ID .)
+    :               reduce using rule 68 (factor -> ID .)
+    (               shift and go to state 30
+
+
+state 46
+
+    (69) factor -> NUMBER .
+
+    %               reduce using rule 69 (factor -> NUMBER .)
+    *               reduce using rule 69 (factor -> NUMBER .)
+    /               reduce using rule 69 (factor -> NUMBER .)
+    >               reduce using rule 69 (factor -> NUMBER .)
+    <               reduce using rule 69 (factor -> NUMBER .)
+    GTEQL           reduce using rule 69 (factor -> NUMBER .)
+    LTEQL           reduce using rule 69 (factor -> NUMBER .)
+    NOTEQL          reduce using rule 69 (factor -> NUMBER .)
+    BOOLEQL         reduce using rule 69 (factor -> NUMBER .)
+    +               reduce using rule 69 (factor -> NUMBER .)
+    -               reduce using rule 69 (factor -> NUMBER .)
+    AND             reduce using rule 69 (factor -> NUMBER .)
+    {               reduce using rule 69 (factor -> NUMBER .)
+    OR              reduce using rule 69 (factor -> NUMBER .)
+    VARIABLE        reduce using rule 69 (factor -> NUMBER .)
+    ID              reduce using rule 69 (factor -> NUMBER .)
+    WHILE           reduce using rule 69 (factor -> NUMBER .)
+    FOR             reduce using rule 69 (factor -> NUMBER .)
+    IF              reduce using rule 69 (factor -> NUMBER .)
+    PRINT           reduce using rule 69 (factor -> NUMBER .)
+    $end            reduce using rule 69 (factor -> NUMBER .)
+    }               reduce using rule 69 (factor -> NUMBER .)
+    RETURN          reduce using rule 69 (factor -> NUMBER .)
+    )               reduce using rule 69 (factor -> NUMBER .)
+    ,               reduce using rule 69 (factor -> NUMBER .)
+    :               reduce using rule 69 (factor -> NUMBER .)
+
+
+state 47
+
+    (70) factor -> STRING .
+
+    %               reduce using rule 70 (factor -> STRING .)
+    *               reduce using rule 70 (factor -> STRING .)
+    /               reduce using rule 70 (factor -> STRING .)
+    >               reduce using rule 70 (factor -> STRING .)
+    <               reduce using rule 70 (factor -> STRING .)
+    GTEQL           reduce using rule 70 (factor -> STRING .)
+    LTEQL           reduce using rule 70 (factor -> STRING .)
+    NOTEQL          reduce using rule 70 (factor -> STRING .)
+    BOOLEQL         reduce using rule 70 (factor -> STRING .)
+    +               reduce using rule 70 (factor -> STRING .)
+    -               reduce using rule 70 (factor -> STRING .)
+    AND             reduce using rule 70 (factor -> STRING .)
+    {               reduce using rule 70 (factor -> STRING .)
+    OR              reduce using rule 70 (factor -> STRING .)
+    VARIABLE        reduce using rule 70 (factor -> STRING .)
+    ID              reduce using rule 70 (factor -> STRING .)
+    WHILE           reduce using rule 70 (factor -> STRING .)
+    FOR             reduce using rule 70 (factor -> STRING .)
+    IF              reduce using rule 70 (factor -> STRING .)
+    PRINT           reduce using rule 70 (factor -> STRING .)
+    $end            reduce using rule 70 (factor -> STRING .)
+    }               reduce using rule 70 (factor -> STRING .)
+    RETURN          reduce using rule 70 (factor -> STRING .)
+    )               reduce using rule 70 (factor -> STRING .)
+    ,               reduce using rule 70 (factor -> STRING .)
+    :               reduce using rule 70 (factor -> STRING .)
+
+
+state 48
+
+    (71) factor -> ( . expression )
+    (73) ternary -> ( . boolean ) ? ( boolean : boolean )
+    (60) expression -> . expression + term
+    (61) expression -> . expression - term
+    (62) expression -> . term
+    (44) boolean -> . boolean OR boolterm
+    (45) boolean -> . boolterm
+    (63) term -> . term * factor1
+    (64) term -> . term / factor1
+    (65) term -> . factor1
+    (46) boolterm -> . boolterm AND boolterm1
+    (47) boolterm -> . boolterm1
+    (66) factor1 -> . factor1 % factor
+    (67) factor1 -> . factor
+    (48) boolterm1 -> . ! boolterm2
+    (49) boolterm1 -> . boolterm2
+    (68) factor -> . ID
+    (69) factor -> . NUMBER
+    (70) factor -> . STRING
+    (71) factor -> . ( expression )
+    (72) factor -> . ternary
+    (74) factor -> . funcall
+    (50) boolterm2 -> . condition
+    (51) boolterm2 -> . expression
+    (52) boolterm2 -> . FALSE
+    (53) boolterm2 -> . TRUE
+    (73) ternary -> . ( boolean ) ? ( boolean : boolean )
+    (28) funcall -> . ID ( paramlist )
+    (54) condition -> . expression > expression
+    (55) condition -> . expression < expression
+    (56) condition -> . expression GTEQL expression
+    (57) condition -> . expression LTEQL expression
+    (58) condition -> . expression NOTEQL expression
+    (59) condition -> . expression BOOLEQL expression
+
+    !               shift and go to state 36
+    ID              shift and go to state 45
+    NUMBER          shift and go to state 46
+    STRING          shift and go to state 47
+    (               shift and go to state 48
+    FALSE           shift and go to state 40
+    TRUE            shift and go to state 41
+
+    expression                     shift and go to state 76
+    boolean                        shift and go to state 77
+    term                           shift and go to state 42
+    boolterm                       shift and go to state 34
+    factor1                        shift and go to state 43
+    boolterm1                      shift and go to state 35
+    factor                         shift and go to state 44
+    boolterm2                      shift and go to state 37
+    ternary                        shift and go to state 49
+    funcall                        shift and go to state 50
+    condition                      shift and go to state 38
+
+state 49
+
+    (72) factor -> ternary .
+
+    %               reduce using rule 72 (factor -> ternary .)
+    *               reduce using rule 72 (factor -> ternary .)
+    /               reduce using rule 72 (factor -> ternary .)
+    >               reduce using rule 72 (factor -> ternary .)
+    <               reduce using rule 72 (factor -> ternary .)
+    GTEQL           reduce using rule 72 (factor -> ternary .)
+    LTEQL           reduce using rule 72 (factor -> ternary .)
+    NOTEQL          reduce using rule 72 (factor -> ternary .)
+    BOOLEQL         reduce using rule 72 (factor -> ternary .)
+    +               reduce using rule 72 (factor -> ternary .)
+    -               reduce using rule 72 (factor -> ternary .)
+    AND             reduce using rule 72 (factor -> ternary .)
+    {               reduce using rule 72 (factor -> ternary .)
+    OR              reduce using rule 72 (factor -> ternary .)
+    VARIABLE        reduce using rule 72 (factor -> ternary .)
+    ID              reduce using rule 72 (factor -> ternary .)
+    WHILE           reduce using rule 72 (factor -> ternary .)
+    FOR             reduce using rule 72 (factor -> ternary .)
+    IF              reduce using rule 72 (factor -> ternary .)
+    PRINT           reduce using rule 72 (factor -> ternary .)
+    $end            reduce using rule 72 (factor -> ternary .)
+    }               reduce using rule 72 (factor -> ternary .)
+    RETURN          reduce using rule 72 (factor -> ternary .)
+    )               reduce using rule 72 (factor -> ternary .)
+    ,               reduce using rule 72 (factor -> ternary .)
+    :               reduce using rule 72 (factor -> ternary .)
+
+
+state 50
+
+    (74) factor -> funcall .
+
+    %               reduce using rule 74 (factor -> funcall .)
+    *               reduce using rule 74 (factor -> funcall .)
+    /               reduce using rule 74 (factor -> funcall .)
+    >               reduce using rule 74 (factor -> funcall .)
+    <               reduce using rule 74 (factor -> funcall .)
+    GTEQL           reduce using rule 74 (factor -> funcall .)
+    LTEQL           reduce using rule 74 (factor -> funcall .)
+    NOTEQL          reduce using rule 74 (factor -> funcall .)
+    BOOLEQL         reduce using rule 74 (factor -> funcall .)
+    +               reduce using rule 74 (factor -> funcall .)
+    -               reduce using rule 74 (factor -> funcall .)
+    AND             reduce using rule 74 (factor -> funcall .)
+    {               reduce using rule 74 (factor -> funcall .)
+    OR              reduce using rule 74 (factor -> funcall .)
+    VARIABLE        reduce using rule 74 (factor -> funcall .)
+    ID              reduce using rule 74 (factor -> funcall .)
+    WHILE           reduce using rule 74 (factor -> funcall .)
+    FOR             reduce using rule 74 (factor -> funcall .)
+    IF              reduce using rule 74 (factor -> funcall .)
+    PRINT           reduce using rule 74 (factor -> funcall .)
+    $end            reduce using rule 74 (factor -> funcall .)
+    }               reduce using rule 74 (factor -> funcall .)
+    RETURN          reduce using rule 74 (factor -> funcall .)
+    )               reduce using rule 74 (factor -> funcall .)
+    ,               reduce using rule 74 (factor -> funcall .)
+    :               reduce using rule 74 (factor -> funcall .)
+
+
+state 51
+
+    (37) for -> FOR ( . initialization , boolean , assign ) { block }
+    (38) for -> FOR ( . initialization , boolean , unary ) { block }
+    (22) initialization -> . VARIABLE ID = boolean
+
+    VARIABLE        shift and go to state 79
+
+    initialization                 shift and go to state 78
+
+state 52
+
+    (39) for -> FOR ID . IN RANGE ( expression , expression ) { block }
+
+    IN              shift and go to state 80
+
+
+state 53
+
+    (32) if -> IF boolean . { block } elif
+    (44) boolean -> boolean . OR boolterm
+
+    {               shift and go to state 81
+    OR              shift and go to state 62
+
+
+state 54
+
+    (40) print -> PRINT ( . plist )
+    (41) plist -> . pstat , plist
+    (42) plist -> . pstat
+    (43) pstat -> . boolean
+    (44) boolean -> . boolean OR boolterm
+    (45) boolean -> . boolterm
+    (46) boolterm -> . boolterm AND boolterm1
+    (47) boolterm -> . boolterm1
+    (48) boolterm1 -> . ! boolterm2
+    (49) boolterm1 -> . boolterm2
+    (50) boolterm2 -> . condition
+    (51) boolterm2 -> . expression
+    (52) boolterm2 -> . FALSE
+    (53) boolterm2 -> . TRUE
+    (54) condition -> . expression > expression
+    (55) condition -> . expression < expression
+    (56) condition -> . expression GTEQL expression
+    (57) condition -> . expression LTEQL expression
+    (58) condition -> . expression NOTEQL expression
+    (59) condition -> . expression BOOLEQL expression
+    (60) expression -> . expression + term
+    (61) expression -> . expression - term
+    (62) expression -> . term
+    (63) term -> . term * factor1
+    (64) term -> . term / factor1
+    (65) term -> . factor1
+    (66) factor1 -> . factor1 % factor
+    (67) factor1 -> . factor
+    (68) factor -> . ID
+    (69) factor -> . NUMBER
+    (70) factor -> . STRING
+    (71) factor -> . ( expression )
+    (72) factor -> . ternary
+    (74) factor -> . funcall
+    (73) ternary -> . ( boolean ) ? ( boolean : boolean )
+    (28) funcall -> . ID ( paramlist )
+
+    !               shift and go to state 36
+    FALSE           shift and go to state 40
+    TRUE            shift and go to state 41
+    ID              shift and go to state 45
+    NUMBER          shift and go to state 46
+    STRING          shift and go to state 47
+    (               shift and go to state 48
+
+    plist                          shift and go to state 82
+    pstat                          shift and go to state 83
+    boolean                        shift and go to state 84
+    boolterm                       shift and go to state 34
+    boolterm1                      shift and go to state 35
+    boolterm2                      shift and go to state 37
+    condition                      shift and go to state 38
+    expression                     shift and go to state 39
+    term                           shift and go to state 42
+    factor1                        shift and go to state 43
+    factor                         shift and go to state 44
+    ternary                        shift and go to state 49
+    funcall                        shift and go to state 50
+
+state 55
+
+    (4) function -> FUNCTION ID ( . argument ) { block RETURN boolean }
+    (5) function -> FUNCTION ID ( . argument ) { block }
+    (6) argument -> . ID , argument
+    (7) argument -> . ID
+    (8) argument -> . empty
+    (9) empty -> .
+
+    ID              shift and go to state 85
+    )               reduce using rule 9 (empty -> .)
+
+    argument                       shift and go to state 86
+    empty                          shift and go to state 87
+
+state 56
+
+    (22) initialization -> VARIABLE ID = . boolean
+    (44) boolean -> . boolean OR boolterm
+    (45) boolean -> . boolterm
+    (46) boolterm -> . boolterm AND boolterm1
+    (47) boolterm -> . boolterm1
+    (48) boolterm1 -> . ! boolterm2
+    (49) boolterm1 -> . boolterm2
+    (50) boolterm2 -> . condition
+    (51) boolterm2 -> . expression
+    (52) boolterm2 -> . FALSE
+    (53) boolterm2 -> . TRUE
+    (54) condition -> . expression > expression
+    (55) condition -> . expression < expression
+    (56) condition -> . expression GTEQL expression
+    (57) condition -> . expression LTEQL expression
+    (58) condition -> . expression NOTEQL expression
+    (59) condition -> . expression BOOLEQL expression
+    (60) expression -> . expression + term
+    (61) expression -> . expression - term
+    (62) expression -> . term
+    (63) term -> . term * factor1
+    (64) term -> . term / factor1
+    (65) term -> . factor1
+    (66) factor1 -> . factor1 % factor
+    (67) factor1 -> . factor
+    (68) factor -> . ID
+    (69) factor -> . NUMBER
+    (70) factor -> . STRING
+    (71) factor -> . ( expression )
+    (72) factor -> . ternary
+    (74) factor -> . funcall
+    (73) ternary -> . ( boolean ) ? ( boolean : boolean )
+    (28) funcall -> . ID ( paramlist )
+
+    !               shift and go to state 36
+    FALSE           shift and go to state 40
+    TRUE            shift and go to state 41
+    ID              shift and go to state 45
+    NUMBER          shift and go to state 46
+    STRING          shift and go to state 47
+    (               shift and go to state 48
+
+    boolean                        shift and go to state 88
+    boolterm                       shift and go to state 34
+    boolterm1                      shift and go to state 35
+    boolterm2                      shift and go to state 37
+    condition                      shift and go to state 38
+    expression                     shift and go to state 39
+    term                           shift and go to state 42
+    factor1                        shift and go to state 43
+    factor                         shift and go to state 44
+    ternary                        shift and go to state 49
+    funcall                        shift and go to state 50
+
+state 57
+
+    (23) assign -> ID = boolean .
+    (44) boolean -> boolean . OR boolterm
+
+    VARIABLE        reduce using rule 23 (assign -> ID = boolean .)
+    ID              reduce using rule 23 (assign -> ID = boolean .)
+    WHILE           reduce using rule 23 (assign -> ID = boolean .)
+    FOR             reduce using rule 23 (assign -> ID = boolean .)
+    IF              reduce using rule 23 (assign -> ID = boolean .)
+    PRINT           reduce using rule 23 (assign -> ID = boolean .)
+    $end            reduce using rule 23 (assign -> ID = boolean .)
+    }               reduce using rule 23 (assign -> ID = boolean .)
+    RETURN          reduce using rule 23 (assign -> ID = boolean .)
+    )               reduce using rule 23 (assign -> ID = boolean .)
+    OR              shift and go to state 62
+
+
+state 58
+
+    (28) funcall -> ID ( paramlist . )
+
+    )               shift and go to state 89
+
+
+state 59
+
+    (29) paramlist -> boolean . , paramlist
+    (30) paramlist -> boolean .
+    (44) boolean -> boolean . OR boolterm
+
+    ,               shift and go to state 90
+    )               reduce using rule 30 (paramlist -> boolean .)
+    OR              shift and go to state 62
+
+
+state 60
+
+    (31) paramlist -> empty .
+
+    )               reduce using rule 31 (paramlist -> empty .)
+
+
+state 61
+
+    (36) while -> WHILE boolean { . block }
+    (10) block -> . statement block
+    (11) block -> . statement
+    (12) statement -> . declaration
+    (13) statement -> . initialization
+    (14) statement -> . assign
+    (15) statement -> . funcall
+    (16) statement -> . unary
+    (17) statement -> . while
+    (18) statement -> . for
+    (19) statement -> . if
+    (20) statement -> . print
+    (21) declaration -> . VARIABLE ID
+    (22) initialization -> . VARIABLE ID = boolean
+    (23) assign -> . ID = boolean
+    (28) funcall -> . ID ( paramlist )
+    (24) unary -> . increment
+    (25) unary -> . decrement
+    (36) while -> . WHILE boolean { block }
+    (37) for -> . FOR ( initialization , boolean , assign ) { block }
+    (38) for -> . FOR ( initialization , boolean , unary ) { block }
+    (39) for -> . FOR ID IN RANGE ( expression , expression ) { block }
+    (32) if -> . IF boolean { block } elif
+    (40) print -> . PRINT ( plist )
+    (26) increment -> . ID INCRMNT
+    (27) decrement -> . ID DECRMNT
+
+    VARIABLE        shift and go to state 17
+    ID              shift and go to state 18
+    WHILE           shift and go to state 21
+    FOR             shift and go to state 22
+    IF              shift and go to state 23
+    PRINT           shift and go to state 24
+
+    block                          shift and go to state 91
+    statement                      shift and go to state 7
+    declaration                    shift and go to state 8
+    initialization                 shift and go to state 9
+    assign                         shift and go to state 10
+    funcall                        shift and go to state 11
+    unary                          shift and go to state 12
+    while                          shift and go to state 13
+    for                            shift and go to state 14
+    if                             shift and go to state 15
+    print                          shift and go to state 16
+    increment                      shift and go to state 19
+    decrement                      shift and go to state 20
+
+state 62
+
+    (44) boolean -> boolean OR . boolterm
+    (46) boolterm -> . boolterm AND boolterm1
+    (47) boolterm -> . boolterm1
+    (48) boolterm1 -> . ! boolterm2
+    (49) boolterm1 -> . boolterm2
+    (50) boolterm2 -> . condition
+    (51) boolterm2 -> . expression
+    (52) boolterm2 -> . FALSE
+    (53) boolterm2 -> . TRUE
+    (54) condition -> . expression > expression
+    (55) condition -> . expression < expression
+    (56) condition -> . expression GTEQL expression
+    (57) condition -> . expression LTEQL expression
+    (58) condition -> . expression NOTEQL expression
+    (59) condition -> . expression BOOLEQL expression
+    (60) expression -> . expression + term
+    (61) expression -> . expression - term
+    (62) expression -> . term
+    (63) term -> . term * factor1
+    (64) term -> . term / factor1
+    (65) term -> . factor1
+    (66) factor1 -> . factor1 % factor
+    (67) factor1 -> . factor
+    (68) factor -> . ID
+    (69) factor -> . NUMBER
+    (70) factor -> . STRING
+    (71) factor -> . ( expression )
+    (72) factor -> . ternary
+    (74) factor -> . funcall
+    (73) ternary -> . ( boolean ) ? ( boolean : boolean )
+    (28) funcall -> . ID ( paramlist )
+
+    !               shift and go to state 36
+    FALSE           shift and go to state 40
+    TRUE            shift and go to state 41
+    ID              shift and go to state 45
+    NUMBER          shift and go to state 46
+    STRING          shift and go to state 47
+    (               shift and go to state 48
+
+    boolterm                       shift and go to state 92
+    boolterm1                      shift and go to state 35
+    boolterm2                      shift and go to state 37
+    condition                      shift and go to state 38
+    expression                     shift and go to state 39
+    term                           shift and go to state 42
+    factor1                        shift and go to state 43
+    factor                         shift and go to state 44
+    ternary                        shift and go to state 49
+    funcall                        shift and go to state 50
+
+state 63
+
+    (46) boolterm -> boolterm AND . boolterm1
+    (48) boolterm1 -> . ! boolterm2
+    (49) boolterm1 -> . boolterm2
+    (50) boolterm2 -> . condition
+    (51) boolterm2 -> . expression
+    (52) boolterm2 -> . FALSE
+    (53) boolterm2 -> . TRUE
+    (54) condition -> . expression > expression
+    (55) condition -> . expression < expression
+    (56) condition -> . expression GTEQL expression
+    (57) condition -> . expression LTEQL expression
+    (58) condition -> . expression NOTEQL expression
+    (59) condition -> . expression BOOLEQL expression
+    (60) expression -> . expression + term
+    (61) expression -> . expression - term
+    (62) expression -> . term
+    (63) term -> . term * factor1
+    (64) term -> . term / factor1
+    (65) term -> . factor1
+    (66) factor1 -> . factor1 % factor
+    (67) factor1 -> . factor
+    (68) factor -> . ID
+    (69) factor -> . NUMBER
+    (70) factor -> . STRING
+    (71) factor -> . ( expression )
+    (72) factor -> . ternary
+    (74) factor -> . funcall
+    (73) ternary -> . ( boolean ) ? ( boolean : boolean )
+    (28) funcall -> . ID ( paramlist )
+
+    !               shift and go to state 36
+    FALSE           shift and go to state 40
+    TRUE            shift and go to state 41
+    ID              shift and go to state 45
+    NUMBER          shift and go to state 46
+    STRING          shift and go to state 47
+    (               shift and go to state 48
+
+    boolterm1                      shift and go to state 93
+    boolterm2                      shift and go to state 37
+    condition                      shift and go to state 38
+    expression                     shift and go to state 39
+    term                           shift and go to state 42
+    factor1                        shift and go to state 43
+    factor                         shift and go to state 44
+    ternary                        shift and go to state 49
+    funcall                        shift and go to state 50
+
+state 64
+
+    (48) boolterm1 -> ! boolterm2 .
+
+    AND             reduce using rule 48 (boolterm1 -> ! boolterm2 .)
+    {               reduce using rule 48 (boolterm1 -> ! boolterm2 .)
+    OR              reduce using rule 48 (boolterm1 -> ! boolterm2 .)
+    VARIABLE        reduce using rule 48 (boolterm1 -> ! boolterm2 .)
+    ID              reduce using rule 48 (boolterm1 -> ! boolterm2 .)
+    WHILE           reduce using rule 48 (boolterm1 -> ! boolterm2 .)
+    FOR             reduce using rule 48 (boolterm1 -> ! boolterm2 .)
+    IF              reduce using rule 48 (boolterm1 -> ! boolterm2 .)
+    PRINT           reduce using rule 48 (boolterm1 -> ! boolterm2 .)
+    $end            reduce using rule 48 (boolterm1 -> ! boolterm2 .)
+    }               reduce using rule 48 (boolterm1 -> ! boolterm2 .)
+    RETURN          reduce using rule 48 (boolterm1 -> ! boolterm2 .)
+    )               reduce using rule 48 (boolterm1 -> ! boolterm2 .)
+    ,               reduce using rule 48 (boolterm1 -> ! boolterm2 .)
+    :               reduce using rule 48 (boolterm1 -> ! boolterm2 .)
+
+
+state 65
+
+    (54) condition -> expression > . expression
+    (60) expression -> . expression + term
+    (61) expression -> . expression - term
+    (62) expression -> . term
+    (63) term -> . term * factor1
+    (64) term -> . term / factor1
+    (65) term -> . factor1
+    (66) factor1 -> . factor1 % factor
+    (67) factor1 -> . factor
+    (68) factor -> . ID
+    (69) factor -> . NUMBER
+    (70) factor -> . STRING
+    (71) factor -> . ( expression )
+    (72) factor -> . ternary
+    (74) factor -> . funcall
+    (73) ternary -> . ( boolean ) ? ( boolean : boolean )
+    (28) funcall -> . ID ( paramlist )
+
+    ID              shift and go to state 45
+    NUMBER          shift and go to state 46
+    STRING          shift and go to state 47
+    (               shift and go to state 48
+
+    expression                     shift and go to state 94
+    term                           shift and go to state 42
+    factor1                        shift and go to state 43
+    factor                         shift and go to state 44
+    ternary                        shift and go to state 49
+    funcall                        shift and go to state 50
+
+state 66
+
+    (55) condition -> expression < . expression
+    (60) expression -> . expression + term
+    (61) expression -> . expression - term
+    (62) expression -> . term
+    (63) term -> . term * factor1
+    (64) term -> . term / factor1
+    (65) term -> . factor1
+    (66) factor1 -> . factor1 % factor
+    (67) factor1 -> . factor
+    (68) factor -> . ID
+    (69) factor -> . NUMBER
+    (70) factor -> . STRING
+    (71) factor -> . ( expression )
+    (72) factor -> . ternary
+    (74) factor -> . funcall
+    (73) ternary -> . ( boolean ) ? ( boolean : boolean )
+    (28) funcall -> . ID ( paramlist )
+
+    ID              shift and go to state 45
+    NUMBER          shift and go to state 46
+    STRING          shift and go to state 47
+    (               shift and go to state 48
+
+    expression                     shift and go to state 95
+    term                           shift and go to state 42
+    factor1                        shift and go to state 43
+    factor                         shift and go to state 44
+    ternary                        shift and go to state 49
+    funcall                        shift and go to state 50
+
+state 67
+
+    (56) condition -> expression GTEQL . expression
+    (60) expression -> . expression + term
+    (61) expression -> . expression - term
+    (62) expression -> . term
+    (63) term -> . term * factor1
+    (64) term -> . term / factor1
+    (65) term -> . factor1
+    (66) factor1 -> . factor1 % factor
+    (67) factor1 -> . factor
+    (68) factor -> . ID
+    (69) factor -> . NUMBER
+    (70) factor -> . STRING
+    (71) factor -> . ( expression )
+    (72) factor -> . ternary
+    (74) factor -> . funcall
+    (73) ternary -> . ( boolean ) ? ( boolean : boolean )
+    (28) funcall -> . ID ( paramlist )
+
+    ID              shift and go to state 45
+    NUMBER          shift and go to state 46
+    STRING          shift and go to state 47
+    (               shift and go to state 48
+
+    expression                     shift and go to state 96
+    term                           shift and go to state 42
+    factor1                        shift and go to state 43
+    factor                         shift and go to state 44
+    ternary                        shift and go to state 49
+    funcall                        shift and go to state 50
+
+state 68
+
+    (57) condition -> expression LTEQL . expression
+    (60) expression -> . expression + term
+    (61) expression -> . expression - term
+    (62) expression -> . term
+    (63) term -> . term * factor1
+    (64) term -> . term / factor1
+    (65) term -> . factor1
+    (66) factor1 -> . factor1 % factor
+    (67) factor1 -> . factor
+    (68) factor -> . ID
+    (69) factor -> . NUMBER
+    (70) factor -> . STRING
+    (71) factor -> . ( expression )
+    (72) factor -> . ternary
+    (74) factor -> . funcall
+    (73) ternary -> . ( boolean ) ? ( boolean : boolean )
+    (28) funcall -> . ID ( paramlist )
+
+    ID              shift and go to state 45
+    NUMBER          shift and go to state 46
+    STRING          shift and go to state 47
+    (               shift and go to state 48
+
+    expression                     shift and go to state 97
+    term                           shift and go to state 42
+    factor1                        shift and go to state 43
+    factor                         shift and go to state 44
+    ternary                        shift and go to state 49
+    funcall                        shift and go to state 50
+
+state 69
+
+    (58) condition -> expression NOTEQL . expression
+    (60) expression -> . expression + term
+    (61) expression -> . expression - term
+    (62) expression -> . term
+    (63) term -> . term * factor1
+    (64) term -> . term / factor1
+    (65) term -> . factor1
+    (66) factor1 -> . factor1 % factor
+    (67) factor1 -> . factor
+    (68) factor -> . ID
+    (69) factor -> . NUMBER
+    (70) factor -> . STRING
+    (71) factor -> . ( expression )
+    (72) factor -> . ternary
+    (74) factor -> . funcall
+    (73) ternary -> . ( boolean ) ? ( boolean : boolean )
+    (28) funcall -> . ID ( paramlist )
+
+    ID              shift and go to state 45
+    NUMBER          shift and go to state 46
+    STRING          shift and go to state 47
+    (               shift and go to state 48
+
+    expression                     shift and go to state 98
+    term                           shift and go to state 42
+    factor1                        shift and go to state 43
+    factor                         shift and go to state 44
+    ternary                        shift and go to state 49
+    funcall                        shift and go to state 50
+
+state 70
+
+    (59) condition -> expression BOOLEQL . expression
+    (60) expression -> . expression + term
+    (61) expression -> . expression - term
+    (62) expression -> . term
+    (63) term -> . term * factor1
+    (64) term -> . term / factor1
+    (65) term -> . factor1
+    (66) factor1 -> . factor1 % factor
+    (67) factor1 -> . factor
+    (68) factor -> . ID
+    (69) factor -> . NUMBER
+    (70) factor -> . STRING
+    (71) factor -> . ( expression )
+    (72) factor -> . ternary
+    (74) factor -> . funcall
+    (73) ternary -> . ( boolean ) ? ( boolean : boolean )
+    (28) funcall -> . ID ( paramlist )
+
+    ID              shift and go to state 45
+    NUMBER          shift and go to state 46
+    STRING          shift and go to state 47
+    (               shift and go to state 48
+
+    expression                     shift and go to state 99
+    term                           shift and go to state 42
+    factor1                        shift and go to state 43
+    factor                         shift and go to state 44
+    ternary                        shift and go to state 49
+    funcall                        shift and go to state 50
+
+state 71
+
+    (60) expression -> expression + . term
+    (63) term -> . term * factor1
+    (64) term -> . term / factor1
+    (65) term -> . factor1
+    (66) factor1 -> . factor1 % factor
+    (67) factor1 -> . factor
+    (68) factor -> . ID
+    (69) factor -> . NUMBER
+    (70) factor -> . STRING
+    (71) factor -> . ( expression )
+    (72) factor -> . ternary
+    (74) factor -> . funcall
+    (73) ternary -> . ( boolean ) ? ( boolean : boolean )
+    (28) funcall -> . ID ( paramlist )
+
+    ID              shift and go to state 45
+    NUMBER          shift and go to state 46
+    STRING          shift and go to state 47
+    (               shift and go to state 48
+
+    term                           shift and go to state 100
+    factor1                        shift and go to state 43
+    factor                         shift and go to state 44
+    ternary                        shift and go to state 49
+    funcall                        shift and go to state 50
+
+state 72
+
+    (61) expression -> expression - . term
+    (63) term -> . term * factor1
+    (64) term -> . term / factor1
+    (65) term -> . factor1
+    (66) factor1 -> . factor1 % factor
+    (67) factor1 -> . factor
+    (68) factor -> . ID
+    (69) factor -> . NUMBER
+    (70) factor -> . STRING
+    (71) factor -> . ( expression )
+    (72) factor -> . ternary
+    (74) factor -> . funcall
+    (73) ternary -> . ( boolean ) ? ( boolean : boolean )
+    (28) funcall -> . ID ( paramlist )
+
+    ID              shift and go to state 45
+    NUMBER          shift and go to state 46
+    STRING          shift and go to state 47
+    (               shift and go to state 48
+
+    term                           shift and go to state 101
+    factor1                        shift and go to state 43
+    factor                         shift and go to state 44
+    ternary                        shift and go to state 49
+    funcall                        shift and go to state 50
+
+state 73
+
+    (63) term -> term * . factor1
+    (66) factor1 -> . factor1 % factor
+    (67) factor1 -> . factor
+    (68) factor -> . ID
+    (69) factor -> . NUMBER
+    (70) factor -> . STRING
+    (71) factor -> . ( expression )
+    (72) factor -> . ternary
+    (74) factor -> . funcall
+    (73) ternary -> . ( boolean ) ? ( boolean : boolean )
+    (28) funcall -> . ID ( paramlist )
+
+    ID              shift and go to state 45
+    NUMBER          shift and go to state 46
+    STRING          shift and go to state 47
+    (               shift and go to state 48
+
+    factor1                        shift and go to state 102
+    factor                         shift and go to state 44
+    ternary                        shift and go to state 49
+    funcall                        shift and go to state 50
+
+state 74
+
+    (64) term -> term / . factor1
+    (66) factor1 -> . factor1 % factor
+    (67) factor1 -> . factor
+    (68) factor -> . ID
+    (69) factor -> . NUMBER
+    (70) factor -> . STRING
+    (71) factor -> . ( expression )
+    (72) factor -> . ternary
+    (74) factor -> . funcall
+    (73) ternary -> . ( boolean ) ? ( boolean : boolean )
+    (28) funcall -> . ID ( paramlist )
+
+    ID              shift and go to state 45
+    NUMBER          shift and go to state 46
+    STRING          shift and go to state 47
+    (               shift and go to state 48
+
+    factor1                        shift and go to state 103
+    factor                         shift and go to state 44
+    ternary                        shift and go to state 49
+    funcall                        shift and go to state 50
+
+state 75
+
+    (66) factor1 -> factor1 % . factor
+    (68) factor -> . ID
+    (69) factor -> . NUMBER
+    (70) factor -> . STRING
+    (71) factor -> . ( expression )
+    (72) factor -> . ternary
+    (74) factor -> . funcall
+    (73) ternary -> . ( boolean ) ? ( boolean : boolean )
+    (28) funcall -> . ID ( paramlist )
+
+    ID              shift and go to state 45
+    NUMBER          shift and go to state 46
+    STRING          shift and go to state 47
+    (               shift and go to state 48
+
+    factor                         shift and go to state 104
+    ternary                        shift and go to state 49
+    funcall                        shift and go to state 50
+
+state 76
+
+    (71) factor -> ( expression . )
+    (60) expression -> expression . + term
+    (61) expression -> expression . - term
+    (51) boolterm2 -> expression .
+    (54) condition -> expression . > expression
+    (55) condition -> expression . < expression
+    (56) condition -> expression . GTEQL expression
+    (57) condition -> expression . LTEQL expression
+    (58) condition -> expression . NOTEQL expression
+    (59) condition -> expression . BOOLEQL expression
+
+  ! shift/reduce conflict for ) resolved as shift
+    )               shift and go to state 105
+    +               shift and go to state 71
+    -               shift and go to state 72
+    AND             reduce using rule 51 (boolterm2 -> expression .)
+    OR              reduce using rule 51 (boolterm2 -> expression .)
+    >               shift and go to state 65
+    <               shift and go to state 66
+    GTEQL           shift and go to state 67
+    LTEQL           shift and go to state 68
+    NOTEQL          shift and go to state 69
+    BOOLEQL         shift and go to state 70
+
+  ! )               [ reduce using rule 51 (boolterm2 -> expression .) ]
+
+
+state 77
+
+    (73) ternary -> ( boolean . ) ? ( boolean : boolean )
+    (44) boolean -> boolean . OR boolterm
+
+    )               shift and go to state 106
+    OR              shift and go to state 62
+
+
+state 78
+
+    (37) for -> FOR ( initialization . , boolean , assign ) { block }
+    (38) for -> FOR ( initialization . , boolean , unary ) { block }
+
+    ,               shift and go to state 107
+
+
+state 79
+
+    (22) initialization -> VARIABLE . ID = boolean
+
+    ID              shift and go to state 108
+
+
+state 80
+
+    (39) for -> FOR ID IN . RANGE ( expression , expression ) { block }
+
+    RANGE           shift and go to state 109
+
+
+state 81
+
+    (32) if -> IF boolean { . block } elif
+    (10) block -> . statement block
+    (11) block -> . statement
+    (12) statement -> . declaration
+    (13) statement -> . initialization
+    (14) statement -> . assign
+    (15) statement -> . funcall
+    (16) statement -> . unary
+    (17) statement -> . while
+    (18) statement -> . for
+    (19) statement -> . if
+    (20) statement -> . print
+    (21) declaration -> . VARIABLE ID
+    (22) initialization -> . VARIABLE ID = boolean
+    (23) assign -> . ID = boolean
+    (28) funcall -> . ID ( paramlist )
+    (24) unary -> . increment
+    (25) unary -> . decrement
+    (36) while -> . WHILE boolean { block }
+    (37) for -> . FOR ( initialization , boolean , assign ) { block }
+    (38) for -> . FOR ( initialization , boolean , unary ) { block }
+    (39) for -> . FOR ID IN RANGE ( expression , expression ) { block }
+    (32) if -> . IF boolean { block } elif
+    (40) print -> . PRINT ( plist )
+    (26) increment -> . ID INCRMNT
+    (27) decrement -> . ID DECRMNT
+
+    VARIABLE        shift and go to state 17
+    ID              shift and go to state 18
+    WHILE           shift and go to state 21
+    FOR             shift and go to state 22
+    IF              shift and go to state 23
+    PRINT           shift and go to state 24
+
+    block                          shift and go to state 110
+    statement                      shift and go to state 7
+    declaration                    shift and go to state 8
+    initialization                 shift and go to state 9
+    assign                         shift and go to state 10
+    funcall                        shift and go to state 11
+    unary                          shift and go to state 12
+    while                          shift and go to state 13
+    for                            shift and go to state 14
+    if                             shift and go to state 15
+    print                          shift and go to state 16
+    increment                      shift and go to state 19
+    decrement                      shift and go to state 20
+
+state 82
+
+    (40) print -> PRINT ( plist . )
+
+    )               shift and go to state 111
+
+
+state 83
+
+    (41) plist -> pstat . , plist
+    (42) plist -> pstat .
+
+    ,               shift and go to state 112
+    )               reduce using rule 42 (plist -> pstat .)
+
+
+state 84
+
+    (43) pstat -> boolean .
+    (44) boolean -> boolean . OR boolterm
+
+    ,               reduce using rule 43 (pstat -> boolean .)
+    )               reduce using rule 43 (pstat -> boolean .)
+    OR              shift and go to state 62
+
+
+state 85
+
+    (6) argument -> ID . , argument
+    (7) argument -> ID .
+
+    ,               shift and go to state 113
+    )               reduce using rule 7 (argument -> ID .)
+
+
+state 86
+
+    (4) function -> FUNCTION ID ( argument . ) { block RETURN boolean }
+    (5) function -> FUNCTION ID ( argument . ) { block }
+
+    )               shift and go to state 114
+
+
+state 87
+
+    (8) argument -> empty .
+
+    )               reduce using rule 8 (argument -> empty .)
+
+
+state 88
+
+    (22) initialization -> VARIABLE ID = boolean .
+    (44) boolean -> boolean . OR boolterm
+
+    VARIABLE        reduce using rule 22 (initialization -> VARIABLE ID = boolean .)
+    ID              reduce using rule 22 (initialization -> VARIABLE ID = boolean .)
+    WHILE           reduce using rule 22 (initialization -> VARIABLE ID = boolean .)
+    FOR             reduce using rule 22 (initialization -> VARIABLE ID = boolean .)
+    IF              reduce using rule 22 (initialization -> VARIABLE ID = boolean .)
+    PRINT           reduce using rule 22 (initialization -> VARIABLE ID = boolean .)
+    $end            reduce using rule 22 (initialization -> VARIABLE ID = boolean .)
+    }               reduce using rule 22 (initialization -> VARIABLE ID = boolean .)
+    RETURN          reduce using rule 22 (initialization -> VARIABLE ID = boolean .)
+    ,               reduce using rule 22 (initialization -> VARIABLE ID = boolean .)
+    OR              shift and go to state 62
+
+
+state 89
+
+    (28) funcall -> ID ( paramlist ) .
+
+    VARIABLE        reduce using rule 28 (funcall -> ID ( paramlist ) .)
+    ID              reduce using rule 28 (funcall -> ID ( paramlist ) .)
+    WHILE           reduce using rule 28 (funcall -> ID ( paramlist ) .)
+    FOR             reduce using rule 28 (funcall -> ID ( paramlist ) .)
+    IF              reduce using rule 28 (funcall -> ID ( paramlist ) .)
+    PRINT           reduce using rule 28 (funcall -> ID ( paramlist ) .)
+    $end            reduce using rule 28 (funcall -> ID ( paramlist ) .)
+    }               reduce using rule 28 (funcall -> ID ( paramlist ) .)
+    RETURN          reduce using rule 28 (funcall -> ID ( paramlist ) .)
+    %               reduce using rule 28 (funcall -> ID ( paramlist ) .)
+    *               reduce using rule 28 (funcall -> ID ( paramlist ) .)
+    /               reduce using rule 28 (funcall -> ID ( paramlist ) .)
+    >               reduce using rule 28 (funcall -> ID ( paramlist ) .)
+    <               reduce using rule 28 (funcall -> ID ( paramlist ) .)
+    GTEQL           reduce using rule 28 (funcall -> ID ( paramlist ) .)
+    LTEQL           reduce using rule 28 (funcall -> ID ( paramlist ) .)
+    NOTEQL          reduce using rule 28 (funcall -> ID ( paramlist ) .)
+    BOOLEQL         reduce using rule 28 (funcall -> ID ( paramlist ) .)
+    +               reduce using rule 28 (funcall -> ID ( paramlist ) .)
+    -               reduce using rule 28 (funcall -> ID ( paramlist ) .)
+    AND             reduce using rule 28 (funcall -> ID ( paramlist ) .)
+    {               reduce using rule 28 (funcall -> ID ( paramlist ) .)
+    OR              reduce using rule 28 (funcall -> ID ( paramlist ) .)
+    )               reduce using rule 28 (funcall -> ID ( paramlist ) .)
+    ,               reduce using rule 28 (funcall -> ID ( paramlist ) .)
+    :               reduce using rule 28 (funcall -> ID ( paramlist ) .)
+
+
+state 90
+
+    (29) paramlist -> boolean , . paramlist
+    (29) paramlist -> . boolean , paramlist
+    (30) paramlist -> . boolean
+    (31) paramlist -> . empty
+    (44) boolean -> . boolean OR boolterm
+    (45) boolean -> . boolterm
+    (9) empty -> .
+    (46) boolterm -> . boolterm AND boolterm1
+    (47) boolterm -> . boolterm1
+    (48) boolterm1 -> . ! boolterm2
+    (49) boolterm1 -> . boolterm2
+    (50) boolterm2 -> . condition
+    (51) boolterm2 -> . expression
+    (52) boolterm2 -> . FALSE
+    (53) boolterm2 -> . TRUE
+    (54) condition -> . expression > expression
+    (55) condition -> . expression < expression
+    (56) condition -> . expression GTEQL expression
+    (57) condition -> . expression LTEQL expression
+    (58) condition -> . expression NOTEQL expression
+    (59) condition -> . expression BOOLEQL expression
+    (60) expression -> . expression + term
+    (61) expression -> . expression - term
+    (62) expression -> . term
+    (63) term -> . term * factor1
+    (64) term -> . term / factor1
+    (65) term -> . factor1
+    (66) factor1 -> . factor1 % factor
+    (67) factor1 -> . factor
+    (68) factor -> . ID
+    (69) factor -> . NUMBER
+    (70) factor -> . STRING
+    (71) factor -> . ( expression )
+    (72) factor -> . ternary
+    (74) factor -> . funcall
+    (73) ternary -> . ( boolean ) ? ( boolean : boolean )
+    (28) funcall -> . ID ( paramlist )
+
+    )               reduce using rule 9 (empty -> .)
+    !               shift and go to state 36
+    FALSE           shift and go to state 40
+    TRUE            shift and go to state 41
+    ID              shift and go to state 45
+    NUMBER          shift and go to state 46
+    STRING          shift and go to state 47
+    (               shift and go to state 48
+
+    boolean                        shift and go to state 59
+    paramlist                      shift and go to state 115
+    empty                          shift and go to state 60
+    boolterm                       shift and go to state 34
+    boolterm1                      shift and go to state 35
+    boolterm2                      shift and go to state 37
+    condition                      shift and go to state 38
+    expression                     shift and go to state 39
+    term                           shift and go to state 42
+    factor1                        shift and go to state 43
+    factor                         shift and go to state 44
+    ternary                        shift and go to state 49
+    funcall                        shift and go to state 50
+
+state 91
+
+    (36) while -> WHILE boolean { block . }
+
+    }               shift and go to state 116
+
+
+state 92
+
+    (44) boolean -> boolean OR boolterm .
+    (46) boolterm -> boolterm . AND boolterm1
+
+    {               reduce using rule 44 (boolean -> boolean OR boolterm .)
+    OR              reduce using rule 44 (boolean -> boolean OR boolterm .)
+    VARIABLE        reduce using rule 44 (boolean -> boolean OR boolterm .)
+    ID              reduce using rule 44 (boolean -> boolean OR boolterm .)
+    WHILE           reduce using rule 44 (boolean -> boolean OR boolterm .)
+    FOR             reduce using rule 44 (boolean -> boolean OR boolterm .)
+    IF              reduce using rule 44 (boolean -> boolean OR boolterm .)
+    PRINT           reduce using rule 44 (boolean -> boolean OR boolterm .)
+    $end            reduce using rule 44 (boolean -> boolean OR boolterm .)
+    }               reduce using rule 44 (boolean -> boolean OR boolterm .)
+    RETURN          reduce using rule 44 (boolean -> boolean OR boolterm .)
+    )               reduce using rule 44 (boolean -> boolean OR boolterm .)
+    ,               reduce using rule 44 (boolean -> boolean OR boolterm .)
+    :               reduce using rule 44 (boolean -> boolean OR boolterm .)
+    AND             shift and go to state 63
+
+
+state 93
+
+    (46) boolterm -> boolterm AND boolterm1 .
+
+    AND             reduce using rule 46 (boolterm -> boolterm AND boolterm1 .)
+    {               reduce using rule 46 (boolterm -> boolterm AND boolterm1 .)
+    OR              reduce using rule 46 (boolterm -> boolterm AND boolterm1 .)
+    VARIABLE        reduce using rule 46 (boolterm -> boolterm AND boolterm1 .)
+    ID              reduce using rule 46 (boolterm -> boolterm AND boolterm1 .)
+    WHILE           reduce using rule 46 (boolterm -> boolterm AND boolterm1 .)
+    FOR             reduce using rule 46 (boolterm -> boolterm AND boolterm1 .)
+    IF              reduce using rule 46 (boolterm -> boolterm AND boolterm1 .)
+    PRINT           reduce using rule 46 (boolterm -> boolterm AND boolterm1 .)
+    $end            reduce using rule 46 (boolterm -> boolterm AND boolterm1 .)
+    }               reduce using rule 46 (boolterm -> boolterm AND boolterm1 .)
+    RETURN          reduce using rule 46 (boolterm -> boolterm AND boolterm1 .)
+    )               reduce using rule 46 (boolterm -> boolterm AND boolterm1 .)
+    ,               reduce using rule 46 (boolterm -> boolterm AND boolterm1 .)
+    :               reduce using rule 46 (boolterm -> boolterm AND boolterm1 .)
+
+
+state 94
+
+    (54) condition -> expression > expression .
+    (60) expression -> expression . + term
+    (61) expression -> expression . - term
+
+    AND             reduce using rule 54 (condition -> expression > expression .)
+    {               reduce using rule 54 (condition -> expression > expression .)
+    OR              reduce using rule 54 (condition -> expression > expression .)
+    VARIABLE        reduce using rule 54 (condition -> expression > expression .)
+    ID              reduce using rule 54 (condition -> expression > expression .)
+    WHILE           reduce using rule 54 (condition -> expression > expression .)
+    FOR             reduce using rule 54 (condition -> expression > expression .)
+    IF              reduce using rule 54 (condition -> expression > expression .)
+    PRINT           reduce using rule 54 (condition -> expression > expression .)
+    $end            reduce using rule 54 (condition -> expression > expression .)
+    }               reduce using rule 54 (condition -> expression > expression .)
+    RETURN          reduce using rule 54 (condition -> expression > expression .)
+    )               reduce using rule 54 (condition -> expression > expression .)
+    ,               reduce using rule 54 (condition -> expression > expression .)
+    :               reduce using rule 54 (condition -> expression > expression .)
+    +               shift and go to state 71
+    -               shift and go to state 72
+
+
+state 95
+
+    (55) condition -> expression < expression .
+    (60) expression -> expression . + term
+    (61) expression -> expression . - term
+
+    AND             reduce using rule 55 (condition -> expression < expression .)
+    {               reduce using rule 55 (condition -> expression < expression .)
+    OR              reduce using rule 55 (condition -> expression < expression .)
+    VARIABLE        reduce using rule 55 (condition -> expression < expression .)
+    ID              reduce using rule 55 (condition -> expression < expression .)
+    WHILE           reduce using rule 55 (condition -> expression < expression .)
+    FOR             reduce using rule 55 (condition -> expression < expression .)
+    IF              reduce using rule 55 (condition -> expression < expression .)
+    PRINT           reduce using rule 55 (condition -> expression < expression .)
+    $end            reduce using rule 55 (condition -> expression < expression .)
+    }               reduce using rule 55 (condition -> expression < expression .)
+    RETURN          reduce using rule 55 (condition -> expression < expression .)
+    )               reduce using rule 55 (condition -> expression < expression .)
+    ,               reduce using rule 55 (condition -> expression < expression .)
+    :               reduce using rule 55 (condition -> expression < expression .)
+    +               shift and go to state 71
+    -               shift and go to state 72
+
+
+state 96
+
+    (56) condition -> expression GTEQL expression .
+    (60) expression -> expression . + term
+    (61) expression -> expression . - term
+
+    AND             reduce using rule 56 (condition -> expression GTEQL expression .)
+    {               reduce using rule 56 (condition -> expression GTEQL expression .)
+    OR              reduce using rule 56 (condition -> expression GTEQL expression .)
+    VARIABLE        reduce using rule 56 (condition -> expression GTEQL expression .)
+    ID              reduce using rule 56 (condition -> expression GTEQL expression .)
+    WHILE           reduce using rule 56 (condition -> expression GTEQL expression .)
+    FOR             reduce using rule 56 (condition -> expression GTEQL expression .)
+    IF              reduce using rule 56 (condition -> expression GTEQL expression .)
+    PRINT           reduce using rule 56 (condition -> expression GTEQL expression .)
+    $end            reduce using rule 56 (condition -> expression GTEQL expression .)
+    }               reduce using rule 56 (condition -> expression GTEQL expression .)
+    RETURN          reduce using rule 56 (condition -> expression GTEQL expression .)
+    )               reduce using rule 56 (condition -> expression GTEQL expression .)
+    ,               reduce using rule 56 (condition -> expression GTEQL expression .)
+    :               reduce using rule 56 (condition -> expression GTEQL expression .)
+    +               shift and go to state 71
+    -               shift and go to state 72
+
+
+state 97
+
+    (57) condition -> expression LTEQL expression .
+    (60) expression -> expression . + term
+    (61) expression -> expression . - term
+
+    AND             reduce using rule 57 (condition -> expression LTEQL expression .)
+    {               reduce using rule 57 (condition -> expression LTEQL expression .)
+    OR              reduce using rule 57 (condition -> expression LTEQL expression .)
+    VARIABLE        reduce using rule 57 (condition -> expression LTEQL expression .)
+    ID              reduce using rule 57 (condition -> expression LTEQL expression .)
+    WHILE           reduce using rule 57 (condition -> expression LTEQL expression .)
+    FOR             reduce using rule 57 (condition -> expression LTEQL expression .)
+    IF              reduce using rule 57 (condition -> expression LTEQL expression .)
+    PRINT           reduce using rule 57 (condition -> expression LTEQL expression .)
+    $end            reduce using rule 57 (condition -> expression LTEQL expression .)
+    }               reduce using rule 57 (condition -> expression LTEQL expression .)
+    RETURN          reduce using rule 57 (condition -> expression LTEQL expression .)
+    )               reduce using rule 57 (condition -> expression LTEQL expression .)
+    ,               reduce using rule 57 (condition -> expression LTEQL expression .)
+    :               reduce using rule 57 (condition -> expression LTEQL expression .)
+    +               shift and go to state 71
+    -               shift and go to state 72
+
+
+state 98
+
+    (58) condition -> expression NOTEQL expression .
+    (60) expression -> expression . + term
+    (61) expression -> expression . - term
+
+    AND             reduce using rule 58 (condition -> expression NOTEQL expression .)
+    {               reduce using rule 58 (condition -> expression NOTEQL expression .)
+    OR              reduce using rule 58 (condition -> expression NOTEQL expression .)
+    VARIABLE        reduce using rule 58 (condition -> expression NOTEQL expression .)
+    ID              reduce using rule 58 (condition -> expression NOTEQL expression .)
+    WHILE           reduce using rule 58 (condition -> expression NOTEQL expression .)
+    FOR             reduce using rule 58 (condition -> expression NOTEQL expression .)
+    IF              reduce using rule 58 (condition -> expression NOTEQL expression .)
+    PRINT           reduce using rule 58 (condition -> expression NOTEQL expression .)
+    $end            reduce using rule 58 (condition -> expression NOTEQL expression .)
+    }               reduce using rule 58 (condition -> expression NOTEQL expression .)
+    RETURN          reduce using rule 58 (condition -> expression NOTEQL expression .)
+    )               reduce using rule 58 (condition -> expression NOTEQL expression .)
+    ,               reduce using rule 58 (condition -> expression NOTEQL expression .)
+    :               reduce using rule 58 (condition -> expression NOTEQL expression .)
+    +               shift and go to state 71
+    -               shift and go to state 72
+
+
+state 99
+
+    (59) condition -> expression BOOLEQL expression .
+    (60) expression -> expression . + term
+    (61) expression -> expression . - term
+
+    AND             reduce using rule 59 (condition -> expression BOOLEQL expression .)
+    {               reduce using rule 59 (condition -> expression BOOLEQL expression .)
+    OR              reduce using rule 59 (condition -> expression BOOLEQL expression .)
+    VARIABLE        reduce using rule 59 (condition -> expression BOOLEQL expression .)
+    ID              reduce using rule 59 (condition -> expression BOOLEQL expression .)
+    WHILE           reduce using rule 59 (condition -> expression BOOLEQL expression .)
+    FOR             reduce using rule 59 (condition -> expression BOOLEQL expression .)
+    IF              reduce using rule 59 (condition -> expression BOOLEQL expression .)
+    PRINT           reduce using rule 59 (condition -> expression BOOLEQL expression .)
+    $end            reduce using rule 59 (condition -> expression BOOLEQL expression .)
+    }               reduce using rule 59 (condition -> expression BOOLEQL expression .)
+    RETURN          reduce using rule 59 (condition -> expression BOOLEQL expression .)
+    )               reduce using rule 59 (condition -> expression BOOLEQL expression .)
+    ,               reduce using rule 59 (condition -> expression BOOLEQL expression .)
+    :               reduce using rule 59 (condition -> expression BOOLEQL expression .)
+    +               shift and go to state 71
+    -               shift and go to state 72
+
+
+state 100
+
+    (60) expression -> expression + term .
+    (63) term -> term . * factor1
+    (64) term -> term . / factor1
+
+    >               reduce using rule 60 (expression -> expression + term .)
+    <               reduce using rule 60 (expression -> expression + term .)
+    GTEQL           reduce using rule 60 (expression -> expression + term .)
+    LTEQL           reduce using rule 60 (expression -> expression + term .)
+    NOTEQL          reduce using rule 60 (expression -> expression + term .)
+    BOOLEQL         reduce using rule 60 (expression -> expression + term .)
+    +               reduce using rule 60 (expression -> expression + term .)
+    -               reduce using rule 60 (expression -> expression + term .)
+    AND             reduce using rule 60 (expression -> expression + term .)
+    {               reduce using rule 60 (expression -> expression + term .)
+    OR              reduce using rule 60 (expression -> expression + term .)
+    VARIABLE        reduce using rule 60 (expression -> expression + term .)
+    ID              reduce using rule 60 (expression -> expression + term .)
+    WHILE           reduce using rule 60 (expression -> expression + term .)
+    FOR             reduce using rule 60 (expression -> expression + term .)
+    IF              reduce using rule 60 (expression -> expression + term .)
+    PRINT           reduce using rule 60 (expression -> expression + term .)
+    $end            reduce using rule 60 (expression -> expression + term .)
+    }               reduce using rule 60 (expression -> expression + term .)
+    RETURN          reduce using rule 60 (expression -> expression + term .)
+    )               reduce using rule 60 (expression -> expression + term .)
+    ,               reduce using rule 60 (expression -> expression + term .)
+    :               reduce using rule 60 (expression -> expression + term .)
+    *               shift and go to state 73
+    /               shift and go to state 74
+
+
+state 101
+
+    (61) expression -> expression - term .
+    (63) term -> term . * factor1
+    (64) term -> term . / factor1
+
+    >               reduce using rule 61 (expression -> expression - term .)
+    <               reduce using rule 61 (expression -> expression - term .)
+    GTEQL           reduce using rule 61 (expression -> expression - term .)
+    LTEQL           reduce using rule 61 (expression -> expression - term .)
+    NOTEQL          reduce using rule 61 (expression -> expression - term .)
+    BOOLEQL         reduce using rule 61 (expression -> expression - term .)
+    +               reduce using rule 61 (expression -> expression - term .)
+    -               reduce using rule 61 (expression -> expression - term .)
+    AND             reduce using rule 61 (expression -> expression - term .)
+    {               reduce using rule 61 (expression -> expression - term .)
+    OR              reduce using rule 61 (expression -> expression - term .)
+    VARIABLE        reduce using rule 61 (expression -> expression - term .)
+    ID              reduce using rule 61 (expression -> expression - term .)
+    WHILE           reduce using rule 61 (expression -> expression - term .)
+    FOR             reduce using rule 61 (expression -> expression - term .)
+    IF              reduce using rule 61 (expression -> expression - term .)
+    PRINT           reduce using rule 61 (expression -> expression - term .)
+    $end            reduce using rule 61 (expression -> expression - term .)
+    }               reduce using rule 61 (expression -> expression - term .)
+    RETURN          reduce using rule 61 (expression -> expression - term .)
+    )               reduce using rule 61 (expression -> expression - term .)
+    ,               reduce using rule 61 (expression -> expression - term .)
+    :               reduce using rule 61 (expression -> expression - term .)
+    *               shift and go to state 73
+    /               shift and go to state 74
+
+
+state 102
+
+    (63) term -> term * factor1 .
+    (66) factor1 -> factor1 . % factor
+
+    *               reduce using rule 63 (term -> term * factor1 .)
+    /               reduce using rule 63 (term -> term * factor1 .)
+    >               reduce using rule 63 (term -> term * factor1 .)
+    <               reduce using rule 63 (term -> term * factor1 .)
+    GTEQL           reduce using rule 63 (term -> term * factor1 .)
+    LTEQL           reduce using rule 63 (term -> term * factor1 .)
+    NOTEQL          reduce using rule 63 (term -> term * factor1 .)
+    BOOLEQL         reduce using rule 63 (term -> term * factor1 .)
+    +               reduce using rule 63 (term -> term * factor1 .)
+    -               reduce using rule 63 (term -> term * factor1 .)
+    AND             reduce using rule 63 (term -> term * factor1 .)
+    {               reduce using rule 63 (term -> term * factor1 .)
+    OR              reduce using rule 63 (term -> term * factor1 .)
+    VARIABLE        reduce using rule 63 (term -> term * factor1 .)
+    ID              reduce using rule 63 (term -> term * factor1 .)
+    WHILE           reduce using rule 63 (term -> term * factor1 .)
+    FOR             reduce using rule 63 (term -> term * factor1 .)
+    IF              reduce using rule 63 (term -> term * factor1 .)
+    PRINT           reduce using rule 63 (term -> term * factor1 .)
+    $end            reduce using rule 63 (term -> term * factor1 .)
+    }               reduce using rule 63 (term -> term * factor1 .)
+    RETURN          reduce using rule 63 (term -> term * factor1 .)
+    )               reduce using rule 63 (term -> term * factor1 .)
+    ,               reduce using rule 63 (term -> term * factor1 .)
+    :               reduce using rule 63 (term -> term * factor1 .)
+    %               shift and go to state 75
+
+
+state 103
+
+    (64) term -> term / factor1 .
+    (66) factor1 -> factor1 . % factor
+
+    *               reduce using rule 64 (term -> term / factor1 .)
+    /               reduce using rule 64 (term -> term / factor1 .)
+    >               reduce using rule 64 (term -> term / factor1 .)
+    <               reduce using rule 64 (term -> term / factor1 .)
+    GTEQL           reduce using rule 64 (term -> term / factor1 .)
+    LTEQL           reduce using rule 64 (term -> term / factor1 .)
+    NOTEQL          reduce using rule 64 (term -> term / factor1 .)
+    BOOLEQL         reduce using rule 64 (term -> term / factor1 .)
+    +               reduce using rule 64 (term -> term / factor1 .)
+    -               reduce using rule 64 (term -> term / factor1 .)
+    AND             reduce using rule 64 (term -> term / factor1 .)
+    {               reduce using rule 64 (term -> term / factor1 .)
+    OR              reduce using rule 64 (term -> term / factor1 .)
+    VARIABLE        reduce using rule 64 (term -> term / factor1 .)
+    ID              reduce using rule 64 (term -> term / factor1 .)
+    WHILE           reduce using rule 64 (term -> term / factor1 .)
+    FOR             reduce using rule 64 (term -> term / factor1 .)
+    IF              reduce using rule 64 (term -> term / factor1 .)
+    PRINT           reduce using rule 64 (term -> term / factor1 .)
+    $end            reduce using rule 64 (term -> term / factor1 .)
+    }               reduce using rule 64 (term -> term / factor1 .)
+    RETURN          reduce using rule 64 (term -> term / factor1 .)
+    )               reduce using rule 64 (term -> term / factor1 .)
+    ,               reduce using rule 64 (term -> term / factor1 .)
+    :               reduce using rule 64 (term -> term / factor1 .)
+    %               shift and go to state 75
+
+
+state 104
+
+    (66) factor1 -> factor1 % factor .
+
+    %               reduce using rule 66 (factor1 -> factor1 % factor .)
+    *               reduce using rule 66 (factor1 -> factor1 % factor .)
+    /               reduce using rule 66 (factor1 -> factor1 % factor .)
+    >               reduce using rule 66 (factor1 -> factor1 % factor .)
+    <               reduce using rule 66 (factor1 -> factor1 % factor .)
+    GTEQL           reduce using rule 66 (factor1 -> factor1 % factor .)
+    LTEQL           reduce using rule 66 (factor1 -> factor1 % factor .)
+    NOTEQL          reduce using rule 66 (factor1 -> factor1 % factor .)
+    BOOLEQL         reduce using rule 66 (factor1 -> factor1 % factor .)
+    +               reduce using rule 66 (factor1 -> factor1 % factor .)
+    -               reduce using rule 66 (factor1 -> factor1 % factor .)
+    AND             reduce using rule 66 (factor1 -> factor1 % factor .)
+    {               reduce using rule 66 (factor1 -> factor1 % factor .)
+    OR              reduce using rule 66 (factor1 -> factor1 % factor .)
+    VARIABLE        reduce using rule 66 (factor1 -> factor1 % factor .)
+    ID              reduce using rule 66 (factor1 -> factor1 % factor .)
+    WHILE           reduce using rule 66 (factor1 -> factor1 % factor .)
+    FOR             reduce using rule 66 (factor1 -> factor1 % factor .)
+    IF              reduce using rule 66 (factor1 -> factor1 % factor .)
+    PRINT           reduce using rule 66 (factor1 -> factor1 % factor .)
+    $end            reduce using rule 66 (factor1 -> factor1 % factor .)
+    }               reduce using rule 66 (factor1 -> factor1 % factor .)
+    RETURN          reduce using rule 66 (factor1 -> factor1 % factor .)
+    )               reduce using rule 66 (factor1 -> factor1 % factor .)
+    ,               reduce using rule 66 (factor1 -> factor1 % factor .)
+    :               reduce using rule 66 (factor1 -> factor1 % factor .)
+
+
+state 105
+
+    (71) factor -> ( expression ) .
+
+    %               reduce using rule 71 (factor -> ( expression ) .)
+    *               reduce using rule 71 (factor -> ( expression ) .)
+    /               reduce using rule 71 (factor -> ( expression ) .)
+    >               reduce using rule 71 (factor -> ( expression ) .)
+    <               reduce using rule 71 (factor -> ( expression ) .)
+    GTEQL           reduce using rule 71 (factor -> ( expression ) .)
+    LTEQL           reduce using rule 71 (factor -> ( expression ) .)
+    NOTEQL          reduce using rule 71 (factor -> ( expression ) .)
+    BOOLEQL         reduce using rule 71 (factor -> ( expression ) .)
+    +               reduce using rule 71 (factor -> ( expression ) .)
+    -               reduce using rule 71 (factor -> ( expression ) .)
+    AND             reduce using rule 71 (factor -> ( expression ) .)
+    {               reduce using rule 71 (factor -> ( expression ) .)
+    OR              reduce using rule 71 (factor -> ( expression ) .)
+    VARIABLE        reduce using rule 71 (factor -> ( expression ) .)
+    ID              reduce using rule 71 (factor -> ( expression ) .)
+    WHILE           reduce using rule 71 (factor -> ( expression ) .)
+    FOR             reduce using rule 71 (factor -> ( expression ) .)
+    IF              reduce using rule 71 (factor -> ( expression ) .)
+    PRINT           reduce using rule 71 (factor -> ( expression ) .)
+    $end            reduce using rule 71 (factor -> ( expression ) .)
+    }               reduce using rule 71 (factor -> ( expression ) .)
+    RETURN          reduce using rule 71 (factor -> ( expression ) .)
+    )               reduce using rule 71 (factor -> ( expression ) .)
+    ,               reduce using rule 71 (factor -> ( expression ) .)
+    :               reduce using rule 71 (factor -> ( expression ) .)
+
+
+state 106
+
+    (73) ternary -> ( boolean ) . ? ( boolean : boolean )
+
+    ?               shift and go to state 117
+
+
+state 107
+
+    (37) for -> FOR ( initialization , . boolean , assign ) { block }
+    (38) for -> FOR ( initialization , . boolean , unary ) { block }
+    (44) boolean -> . boolean OR boolterm
+    (45) boolean -> . boolterm
+    (46) boolterm -> . boolterm AND boolterm1
+    (47) boolterm -> . boolterm1
+    (48) boolterm1 -> . ! boolterm2
+    (49) boolterm1 -> . boolterm2
+    (50) boolterm2 -> . condition
+    (51) boolterm2 -> . expression
+    (52) boolterm2 -> . FALSE
+    (53) boolterm2 -> . TRUE
+    (54) condition -> . expression > expression
+    (55) condition -> . expression < expression
+    (56) condition -> . expression GTEQL expression
+    (57) condition -> . expression LTEQL expression
+    (58) condition -> . expression NOTEQL expression
+    (59) condition -> . expression BOOLEQL expression
+    (60) expression -> . expression + term
+    (61) expression -> . expression - term
+    (62) expression -> . term
+    (63) term -> . term * factor1
+    (64) term -> . term / factor1
+    (65) term -> . factor1
+    (66) factor1 -> . factor1 % factor
+    (67) factor1 -> . factor
+    (68) factor -> . ID
+    (69) factor -> . NUMBER
+    (70) factor -> . STRING
+    (71) factor -> . ( expression )
+    (72) factor -> . ternary
+    (74) factor -> . funcall
+    (73) ternary -> . ( boolean ) ? ( boolean : boolean )
+    (28) funcall -> . ID ( paramlist )
+
+    !               shift and go to state 36
+    FALSE           shift and go to state 40
+    TRUE            shift and go to state 41
+    ID              shift and go to state 45
+    NUMBER          shift and go to state 46
+    STRING          shift and go to state 47
+    (               shift and go to state 48
+
+    boolean                        shift and go to state 118
+    boolterm                       shift and go to state 34
+    boolterm1                      shift and go to state 35
+    boolterm2                      shift and go to state 37
+    condition                      shift and go to state 38
+    expression                     shift and go to state 39
+    term                           shift and go to state 42
+    factor1                        shift and go to state 43
+    factor                         shift and go to state 44
+    ternary                        shift and go to state 49
+    funcall                        shift and go to state 50
+
+state 108
+
+    (22) initialization -> VARIABLE ID . = boolean
+
+    =               shift and go to state 56
+
+
+state 109
+
+    (39) for -> FOR ID IN RANGE . ( expression , expression ) { block }
+
+    (               shift and go to state 119
+
+
+state 110
+
+    (32) if -> IF boolean { block . } elif
+
+    }               shift and go to state 120
+
+
+state 111
+
+    (40) print -> PRINT ( plist ) .
+
+    VARIABLE        reduce using rule 40 (print -> PRINT ( plist ) .)
+    ID              reduce using rule 40 (print -> PRINT ( plist ) .)
+    WHILE           reduce using rule 40 (print -> PRINT ( plist ) .)
+    FOR             reduce using rule 40 (print -> PRINT ( plist ) .)
+    IF              reduce using rule 40 (print -> PRINT ( plist ) .)
+    PRINT           reduce using rule 40 (print -> PRINT ( plist ) .)
+    $end            reduce using rule 40 (print -> PRINT ( plist ) .)
+    }               reduce using rule 40 (print -> PRINT ( plist ) .)
+    RETURN          reduce using rule 40 (print -> PRINT ( plist ) .)
+
+
+state 112
+
+    (41) plist -> pstat , . plist
+    (41) plist -> . pstat , plist
+    (42) plist -> . pstat
+    (43) pstat -> . boolean
+    (44) boolean -> . boolean OR boolterm
+    (45) boolean -> . boolterm
+    (46) boolterm -> . boolterm AND boolterm1
+    (47) boolterm -> . boolterm1
+    (48) boolterm1 -> . ! boolterm2
+    (49) boolterm1 -> . boolterm2
+    (50) boolterm2 -> . condition
+    (51) boolterm2 -> . expression
+    (52) boolterm2 -> . FALSE
+    (53) boolterm2 -> . TRUE
+    (54) condition -> . expression > expression
+    (55) condition -> . expression < expression
+    (56) condition -> . expression GTEQL expression
+    (57) condition -> . expression LTEQL expression
+    (58) condition -> . expression NOTEQL expression
+    (59) condition -> . expression BOOLEQL expression
+    (60) expression -> . expression + term
+    (61) expression -> . expression - term
+    (62) expression -> . term
+    (63) term -> . term * factor1
+    (64) term -> . term / factor1
+    (65) term -> . factor1
+    (66) factor1 -> . factor1 % factor
+    (67) factor1 -> . factor
+    (68) factor -> . ID
+    (69) factor -> . NUMBER
+    (70) factor -> . STRING
+    (71) factor -> . ( expression )
+    (72) factor -> . ternary
+    (74) factor -> . funcall
+    (73) ternary -> . ( boolean ) ? ( boolean : boolean )
+    (28) funcall -> . ID ( paramlist )
+
+    !               shift and go to state 36
+    FALSE           shift and go to state 40
+    TRUE            shift and go to state 41
+    ID              shift and go to state 45
+    NUMBER          shift and go to state 46
+    STRING          shift and go to state 47
+    (               shift and go to state 48
+
+    pstat                          shift and go to state 83
+    plist                          shift and go to state 121
+    boolean                        shift and go to state 84
+    boolterm                       shift and go to state 34
+    boolterm1                      shift and go to state 35
+    boolterm2                      shift and go to state 37
+    condition                      shift and go to state 38
+    expression                     shift and go to state 39
+    term                           shift and go to state 42
+    factor1                        shift and go to state 43
+    factor                         shift and go to state 44
+    ternary                        shift and go to state 49
+    funcall                        shift and go to state 50
+
+state 113
+
+    (6) argument -> ID , . argument
+    (6) argument -> . ID , argument
+    (7) argument -> . ID
+    (8) argument -> . empty
+    (9) empty -> .
+
+    ID              shift and go to state 85
+    )               reduce using rule 9 (empty -> .)
+
+    argument                       shift and go to state 122
+    empty                          shift and go to state 87
+
+state 114
+
+    (4) function -> FUNCTION ID ( argument ) . { block RETURN boolean }
+    (5) function -> FUNCTION ID ( argument ) . { block }
+
+    {               shift and go to state 123
+
+
+state 115
+
+    (29) paramlist -> boolean , paramlist .
+
+    )               reduce using rule 29 (paramlist -> boolean , paramlist .)
+
+
+state 116
+
+    (36) while -> WHILE boolean { block } .
+
+    VARIABLE        reduce using rule 36 (while -> WHILE boolean { block } .)
+    ID              reduce using rule 36 (while -> WHILE boolean { block } .)
+    WHILE           reduce using rule 36 (while -> WHILE boolean { block } .)
+    FOR             reduce using rule 36 (while -> WHILE boolean { block } .)
+    IF              reduce using rule 36 (while -> WHILE boolean { block } .)
+    PRINT           reduce using rule 36 (while -> WHILE boolean { block } .)
+    $end            reduce using rule 36 (while -> WHILE boolean { block } .)
+    }               reduce using rule 36 (while -> WHILE boolean { block } .)
+    RETURN          reduce using rule 36 (while -> WHILE boolean { block } .)
+
+
+state 117
+
+    (73) ternary -> ( boolean ) ? . ( boolean : boolean )
+
+    (               shift and go to state 124
+
+
+state 118
+
+    (37) for -> FOR ( initialization , boolean . , assign ) { block }
+    (38) for -> FOR ( initialization , boolean . , unary ) { block }
+    (44) boolean -> boolean . OR boolterm
+
+    ,               shift and go to state 125
+    OR              shift and go to state 62
+
+
+state 119
+
+    (39) for -> FOR ID IN RANGE ( . expression , expression ) { block }
+    (60) expression -> . expression + term
+    (61) expression -> . expression - term
+    (62) expression -> . term
+    (63) term -> . term * factor1
+    (64) term -> . term / factor1
+    (65) term -> . factor1
+    (66) factor1 -> . factor1 % factor
+    (67) factor1 -> . factor
+    (68) factor -> . ID
+    (69) factor -> . NUMBER
+    (70) factor -> . STRING
+    (71) factor -> . ( expression )
+    (72) factor -> . ternary
+    (74) factor -> . funcall
+    (73) ternary -> . ( boolean ) ? ( boolean : boolean )
+    (28) funcall -> . ID ( paramlist )
+
+    ID              shift and go to state 45
+    NUMBER          shift and go to state 46
+    STRING          shift and go to state 47
+    (               shift and go to state 48
+
+    expression                     shift and go to state 126
+    term                           shift and go to state 42
+    factor1                        shift and go to state 43
+    factor                         shift and go to state 44
+    ternary                        shift and go to state 49
+    funcall                        shift and go to state 50
+
+state 120
+
+    (32) if -> IF boolean { block } . elif
+    (33) elif -> . ELSEIF boolean { block } elif
+    (34) elif -> . ELSE { block }
+    (35) elif -> . empty
+    (9) empty -> .
+
+    ELSEIF          shift and go to state 128
+    ELSE            shift and go to state 129
+    VARIABLE        reduce using rule 9 (empty -> .)
+    ID              reduce using rule 9 (empty -> .)
+    WHILE           reduce using rule 9 (empty -> .)
+    FOR             reduce using rule 9 (empty -> .)
+    IF              reduce using rule 9 (empty -> .)
+    PRINT           reduce using rule 9 (empty -> .)
+    $end            reduce using rule 9 (empty -> .)
+    }               reduce using rule 9 (empty -> .)
+    RETURN          reduce using rule 9 (empty -> .)
+
+    elif                           shift and go to state 127
+    empty                          shift and go to state 130
+
+state 121
+
+    (41) plist -> pstat , plist .
+
+    )               reduce using rule 41 (plist -> pstat , plist .)
+
+
+state 122
+
+    (6) argument -> ID , argument .
+
+    )               reduce using rule 6 (argument -> ID , argument .)
+
+
+state 123
+
+    (4) function -> FUNCTION ID ( argument ) { . block RETURN boolean }
+    (5) function -> FUNCTION ID ( argument ) { . block }
+    (10) block -> . statement block
+    (11) block -> . statement
+    (12) statement -> . declaration
+    (13) statement -> . initialization
+    (14) statement -> . assign
+    (15) statement -> . funcall
+    (16) statement -> . unary
+    (17) statement -> . while
+    (18) statement -> . for
+    (19) statement -> . if
+    (20) statement -> . print
+    (21) declaration -> . VARIABLE ID
+    (22) initialization -> . VARIABLE ID = boolean
+    (23) assign -> . ID = boolean
+    (28) funcall -> . ID ( paramlist )
+    (24) unary -> . increment
+    (25) unary -> . decrement
+    (36) while -> . WHILE boolean { block }
+    (37) for -> . FOR ( initialization , boolean , assign ) { block }
+    (38) for -> . FOR ( initialization , boolean , unary ) { block }
+    (39) for -> . FOR ID IN RANGE ( expression , expression ) { block }
+    (32) if -> . IF boolean { block } elif
+    (40) print -> . PRINT ( plist )
+    (26) increment -> . ID INCRMNT
+    (27) decrement -> . ID DECRMNT
+
+    VARIABLE        shift and go to state 17
+    ID              shift and go to state 18
+    WHILE           shift and go to state 21
+    FOR             shift and go to state 22
+    IF              shift and go to state 23
+    PRINT           shift and go to state 24
+
+    block                          shift and go to state 131
+    statement                      shift and go to state 7
+    declaration                    shift and go to state 8
+    initialization                 shift and go to state 9
+    assign                         shift and go to state 10
+    funcall                        shift and go to state 11
+    unary                          shift and go to state 12
+    while                          shift and go to state 13
+    for                            shift and go to state 14
+    if                             shift and go to state 15
+    print                          shift and go to state 16
+    increment                      shift and go to state 19
+    decrement                      shift and go to state 20
+
+state 124
+
+    (73) ternary -> ( boolean ) ? ( . boolean : boolean )
+    (44) boolean -> . boolean OR boolterm
+    (45) boolean -> . boolterm
+    (46) boolterm -> . boolterm AND boolterm1
+    (47) boolterm -> . boolterm1
+    (48) boolterm1 -> . ! boolterm2
+    (49) boolterm1 -> . boolterm2
+    (50) boolterm2 -> . condition
+    (51) boolterm2 -> . expression
+    (52) boolterm2 -> . FALSE
+    (53) boolterm2 -> . TRUE
+    (54) condition -> . expression > expression
+    (55) condition -> . expression < expression
+    (56) condition -> . expression GTEQL expression
+    (57) condition -> . expression LTEQL expression
+    (58) condition -> . expression NOTEQL expression
+    (59) condition -> . expression BOOLEQL expression
+    (60) expression -> . expression + term
+    (61) expression -> . expression - term
+    (62) expression -> . term
+    (63) term -> . term * factor1
+    (64) term -> . term / factor1
+    (65) term -> . factor1
+    (66) factor1 -> . factor1 % factor
+    (67) factor1 -> . factor
+    (68) factor -> . ID
+    (69) factor -> . NUMBER
+    (70) factor -> . STRING
+    (71) factor -> . ( expression )
+    (72) factor -> . ternary
+    (74) factor -> . funcall
+    (73) ternary -> . ( boolean ) ? ( boolean : boolean )
+    (28) funcall -> . ID ( paramlist )
+
+    !               shift and go to state 36
+    FALSE           shift and go to state 40
+    TRUE            shift and go to state 41
+    ID              shift and go to state 45
+    NUMBER          shift and go to state 46
+    STRING          shift and go to state 47
+    (               shift and go to state 48
+
+    boolean                        shift and go to state 132
+    boolterm                       shift and go to state 34
+    boolterm1                      shift and go to state 35
+    boolterm2                      shift and go to state 37
+    condition                      shift and go to state 38
+    expression                     shift and go to state 39
+    term                           shift and go to state 42
+    factor1                        shift and go to state 43
+    factor                         shift and go to state 44
+    ternary                        shift and go to state 49
+    funcall                        shift and go to state 50
+
+state 125
+
+    (37) for -> FOR ( initialization , boolean , . assign ) { block }
+    (38) for -> FOR ( initialization , boolean , . unary ) { block }
+    (23) assign -> . ID = boolean
+    (24) unary -> . increment
+    (25) unary -> . decrement
+    (26) increment -> . ID INCRMNT
+    (27) decrement -> . ID DECRMNT
+
+    ID              shift and go to state 135
+
+    assign                         shift and go to state 133
+    unary                          shift and go to state 134
+    increment                      shift and go to state 19
+    decrement                      shift and go to state 20
+
+state 126
+
+    (39) for -> FOR ID IN RANGE ( expression . , expression ) { block }
+    (60) expression -> expression . + term
+    (61) expression -> expression . - term
+
+    ,               shift and go to state 136
+    +               shift and go to state 71
+    -               shift and go to state 72
+
+
+state 127
+
+    (32) if -> IF boolean { block } elif .
+
+    VARIABLE        reduce using rule 32 (if -> IF boolean { block } elif .)
+    ID              reduce using rule 32 (if -> IF boolean { block } elif .)
+    WHILE           reduce using rule 32 (if -> IF boolean { block } elif .)
+    FOR             reduce using rule 32 (if -> IF boolean { block } elif .)
+    IF              reduce using rule 32 (if -> IF boolean { block } elif .)
+    PRINT           reduce using rule 32 (if -> IF boolean { block } elif .)
+    $end            reduce using rule 32 (if -> IF boolean { block } elif .)
+    }               reduce using rule 32 (if -> IF boolean { block } elif .)
+    RETURN          reduce using rule 32 (if -> IF boolean { block } elif .)
+
+
+state 128
+
+    (33) elif -> ELSEIF . boolean { block } elif
+    (44) boolean -> . boolean OR boolterm
+    (45) boolean -> . boolterm
+    (46) boolterm -> . boolterm AND boolterm1
+    (47) boolterm -> . boolterm1
+    (48) boolterm1 -> . ! boolterm2
+    (49) boolterm1 -> . boolterm2
+    (50) boolterm2 -> . condition
+    (51) boolterm2 -> . expression
+    (52) boolterm2 -> . FALSE
+    (53) boolterm2 -> . TRUE
+    (54) condition -> . expression > expression
+    (55) condition -> . expression < expression
+    (56) condition -> . expression GTEQL expression
+    (57) condition -> . expression LTEQL expression
+    (58) condition -> . expression NOTEQL expression
+    (59) condition -> . expression BOOLEQL expression
+    (60) expression -> . expression + term
+    (61) expression -> . expression - term
+    (62) expression -> . term
+    (63) term -> . term * factor1
+    (64) term -> . term / factor1
+    (65) term -> . factor1
+    (66) factor1 -> . factor1 % factor
+    (67) factor1 -> . factor
+    (68) factor -> . ID
+    (69) factor -> . NUMBER
+    (70) factor -> . STRING
+    (71) factor -> . ( expression )
+    (72) factor -> . ternary
+    (74) factor -> . funcall
+    (73) ternary -> . ( boolean ) ? ( boolean : boolean )
+    (28) funcall -> . ID ( paramlist )
+
+    !               shift and go to state 36
+    FALSE           shift and go to state 40
+    TRUE            shift and go to state 41
+    ID              shift and go to state 45
+    NUMBER          shift and go to state 46
+    STRING          shift and go to state 47
+    (               shift and go to state 48
+
+    boolean                        shift and go to state 137
+    boolterm                       shift and go to state 34
+    boolterm1                      shift and go to state 35
+    boolterm2                      shift and go to state 37
+    condition                      shift and go to state 38
+    expression                     shift and go to state 39
+    term                           shift and go to state 42
+    factor1                        shift and go to state 43
+    factor                         shift and go to state 44
+    ternary                        shift and go to state 49
+    funcall                        shift and go to state 50
+
+state 129
+
+    (34) elif -> ELSE . { block }
+
+    {               shift and go to state 138
+
+
+state 130
+
+    (35) elif -> empty .
+
+    VARIABLE        reduce using rule 35 (elif -> empty .)
+    ID              reduce using rule 35 (elif -> empty .)
+    WHILE           reduce using rule 35 (elif -> empty .)
+    FOR             reduce using rule 35 (elif -> empty .)
+    IF              reduce using rule 35 (elif -> empty .)
+    PRINT           reduce using rule 35 (elif -> empty .)
+    $end            reduce using rule 35 (elif -> empty .)
+    }               reduce using rule 35 (elif -> empty .)
+    RETURN          reduce using rule 35 (elif -> empty .)
+
+
+state 131
+
+    (4) function -> FUNCTION ID ( argument ) { block . RETURN boolean }
+    (5) function -> FUNCTION ID ( argument ) { block . }
+
+    RETURN          shift and go to state 139
+    }               shift and go to state 140
+
+
+state 132
+
+    (73) ternary -> ( boolean ) ? ( boolean . : boolean )
+    (44) boolean -> boolean . OR boolterm
+
+    :               shift and go to state 141
+    OR              shift and go to state 62
+
+
+state 133
+
+    (37) for -> FOR ( initialization , boolean , assign . ) { block }
+
+    )               shift and go to state 142
+
+
+state 134
+
+    (38) for -> FOR ( initialization , boolean , unary . ) { block }
+
+    )               shift and go to state 143
+
+
+state 135
+
+    (23) assign -> ID . = boolean
+    (26) increment -> ID . INCRMNT
+    (27) decrement -> ID . DECRMNT
+
+    =               shift and go to state 29
+    INCRMNT         shift and go to state 31
+    DECRMNT         shift and go to state 32
+
+
+state 136
+
+    (39) for -> FOR ID IN RANGE ( expression , . expression ) { block }
+    (60) expression -> . expression + term
+    (61) expression -> . expression - term
+    (62) expression -> . term
+    (63) term -> . term * factor1
+    (64) term -> . term / factor1
+    (65) term -> . factor1
+    (66) factor1 -> . factor1 % factor
+    (67) factor1 -> . factor
+    (68) factor -> . ID
+    (69) factor -> . NUMBER
+    (70) factor -> . STRING
+    (71) factor -> . ( expression )
+    (72) factor -> . ternary
+    (74) factor -> . funcall
+    (73) ternary -> . ( boolean ) ? ( boolean : boolean )
+    (28) funcall -> . ID ( paramlist )
+
+    ID              shift and go to state 45
+    NUMBER          shift and go to state 46
+    STRING          shift and go to state 47
+    (               shift and go to state 48
+
+    expression                     shift and go to state 144
+    term                           shift and go to state 42
+    factor1                        shift and go to state 43
+    factor                         shift and go to state 44
+    ternary                        shift and go to state 49
+    funcall                        shift and go to state 50
+
+state 137
+
+    (33) elif -> ELSEIF boolean . { block } elif
+    (44) boolean -> boolean . OR boolterm
+
+    {               shift and go to state 145
+    OR              shift and go to state 62
+
+
+state 138
+
+    (34) elif -> ELSE { . block }
+    (10) block -> . statement block
+    (11) block -> . statement
+    (12) statement -> . declaration
+    (13) statement -> . initialization
+    (14) statement -> . assign
+    (15) statement -> . funcall
+    (16) statement -> . unary
+    (17) statement -> . while
+    (18) statement -> . for
+    (19) statement -> . if
+    (20) statement -> . print
+    (21) declaration -> . VARIABLE ID
+    (22) initialization -> . VARIABLE ID = boolean
+    (23) assign -> . ID = boolean
+    (28) funcall -> . ID ( paramlist )
+    (24) unary -> . increment
+    (25) unary -> . decrement
+    (36) while -> . WHILE boolean { block }
+    (37) for -> . FOR ( initialization , boolean , assign ) { block }
+    (38) for -> . FOR ( initialization , boolean , unary ) { block }
+    (39) for -> . FOR ID IN RANGE ( expression , expression ) { block }
+    (32) if -> . IF boolean { block } elif
+    (40) print -> . PRINT ( plist )
+    (26) increment -> . ID INCRMNT
+    (27) decrement -> . ID DECRMNT
+
+    VARIABLE        shift and go to state 17
+    ID              shift and go to state 18
+    WHILE           shift and go to state 21
+    FOR             shift and go to state 22
+    IF              shift and go to state 23
+    PRINT           shift and go to state 24
+
+    block                          shift and go to state 146
+    statement                      shift and go to state 7
+    declaration                    shift and go to state 8
+    initialization                 shift and go to state 9
+    assign                         shift and go to state 10
+    funcall                        shift and go to state 11
+    unary                          shift and go to state 12
+    while                          shift and go to state 13
+    for                            shift and go to state 14
+    if                             shift and go to state 15
+    print                          shift and go to state 16
+    increment                      shift and go to state 19
+    decrement                      shift and go to state 20
+
+state 139
+
+    (4) function -> FUNCTION ID ( argument ) { block RETURN . boolean }
+    (44) boolean -> . boolean OR boolterm
+    (45) boolean -> . boolterm
+    (46) boolterm -> . boolterm AND boolterm1
+    (47) boolterm -> . boolterm1
+    (48) boolterm1 -> . ! boolterm2
+    (49) boolterm1 -> . boolterm2
+    (50) boolterm2 -> . condition
+    (51) boolterm2 -> . expression
+    (52) boolterm2 -> . FALSE
+    (53) boolterm2 -> . TRUE
+    (54) condition -> . expression > expression
+    (55) condition -> . expression < expression
+    (56) condition -> . expression GTEQL expression
+    (57) condition -> . expression LTEQL expression
+    (58) condition -> . expression NOTEQL expression
+    (59) condition -> . expression BOOLEQL expression
+    (60) expression -> . expression + term
+    (61) expression -> . expression - term
+    (62) expression -> . term
+    (63) term -> . term * factor1
+    (64) term -> . term / factor1
+    (65) term -> . factor1
+    (66) factor1 -> . factor1 % factor
+    (67) factor1 -> . factor
+    (68) factor -> . ID
+    (69) factor -> . NUMBER
+    (70) factor -> . STRING
+    (71) factor -> . ( expression )
+    (72) factor -> . ternary
+    (74) factor -> . funcall
+    (73) ternary -> . ( boolean ) ? ( boolean : boolean )
+    (28) funcall -> . ID ( paramlist )
+
+    !               shift and go to state 36
+    FALSE           shift and go to state 40
+    TRUE            shift and go to state 41
+    ID              shift and go to state 45
+    NUMBER          shift and go to state 46
+    STRING          shift and go to state 47
+    (               shift and go to state 48
+
+    boolean                        shift and go to state 147
+    boolterm                       shift and go to state 34
+    boolterm1                      shift and go to state 35
+    boolterm2                      shift and go to state 37
+    condition                      shift and go to state 38
+    expression                     shift and go to state 39
+    term                           shift and go to state 42
+    factor1                        shift and go to state 43
+    factor                         shift and go to state 44
+    ternary                        shift and go to state 49
+    funcall                        shift and go to state 50
+
+state 140
+
+    (5) function -> FUNCTION ID ( argument ) { block } .
+
+    FUNCTION        reduce using rule 5 (function -> FUNCTION ID ( argument ) { block } .)
+    VARIABLE        reduce using rule 5 (function -> FUNCTION ID ( argument ) { block } .)
+    ID              reduce using rule 5 (function -> FUNCTION ID ( argument ) { block } .)
+    WHILE           reduce using rule 5 (function -> FUNCTION ID ( argument ) { block } .)
+    FOR             reduce using rule 5 (function -> FUNCTION ID ( argument ) { block } .)
+    IF              reduce using rule 5 (function -> FUNCTION ID ( argument ) { block } .)
+    PRINT           reduce using rule 5 (function -> FUNCTION ID ( argument ) { block } .)
+
+
+state 141
+
+    (73) ternary -> ( boolean ) ? ( boolean : . boolean )
+    (44) boolean -> . boolean OR boolterm
+    (45) boolean -> . boolterm
+    (46) boolterm -> . boolterm AND boolterm1
+    (47) boolterm -> . boolterm1
+    (48) boolterm1 -> . ! boolterm2
+    (49) boolterm1 -> . boolterm2
+    (50) boolterm2 -> . condition
+    (51) boolterm2 -> . expression
+    (52) boolterm2 -> . FALSE
+    (53) boolterm2 -> . TRUE
+    (54) condition -> . expression > expression
+    (55) condition -> . expression < expression
+    (56) condition -> . expression GTEQL expression
+    (57) condition -> . expression LTEQL expression
+    (58) condition -> . expression NOTEQL expression
+    (59) condition -> . expression BOOLEQL expression
+    (60) expression -> . expression + term
+    (61) expression -> . expression - term
+    (62) expression -> . term
+    (63) term -> . term * factor1
+    (64) term -> . term / factor1
+    (65) term -> . factor1
+    (66) factor1 -> . factor1 % factor
+    (67) factor1 -> . factor
+    (68) factor -> . ID
+    (69) factor -> . NUMBER
+    (70) factor -> . STRING
+    (71) factor -> . ( expression )
+    (72) factor -> . ternary
+    (74) factor -> . funcall
+    (73) ternary -> . ( boolean ) ? ( boolean : boolean )
+    (28) funcall -> . ID ( paramlist )
+
+    !               shift and go to state 36
+    FALSE           shift and go to state 40
+    TRUE            shift and go to state 41
+    ID              shift and go to state 45
+    NUMBER          shift and go to state 46
+    STRING          shift and go to state 47
+    (               shift and go to state 48
+
+    boolean                        shift and go to state 148
+    boolterm                       shift and go to state 34
+    boolterm1                      shift and go to state 35
+    boolterm2                      shift and go to state 37
+    condition                      shift and go to state 38
+    expression                     shift and go to state 39
+    term                           shift and go to state 42
+    factor1                        shift and go to state 43
+    factor                         shift and go to state 44
+    ternary                        shift and go to state 49
+    funcall                        shift and go to state 50
+
+state 142
+
+    (37) for -> FOR ( initialization , boolean , assign ) . { block }
+
+    {               shift and go to state 149
+
+
+state 143
+
+    (38) for -> FOR ( initialization , boolean , unary ) . { block }
+
+    {               shift and go to state 150
+
+
+state 144
+
+    (39) for -> FOR ID IN RANGE ( expression , expression . ) { block }
+    (60) expression -> expression . + term
+    (61) expression -> expression . - term
+
+    )               shift and go to state 151
+    +               shift and go to state 71
+    -               shift and go to state 72
+
+
+state 145
+
+    (33) elif -> ELSEIF boolean { . block } elif
+    (10) block -> . statement block
+    (11) block -> . statement
+    (12) statement -> . declaration
+    (13) statement -> . initialization
+    (14) statement -> . assign
+    (15) statement -> . funcall
+    (16) statement -> . unary
+    (17) statement -> . while
+    (18) statement -> . for
+    (19) statement -> . if
+    (20) statement -> . print
+    (21) declaration -> . VARIABLE ID
+    (22) initialization -> . VARIABLE ID = boolean
+    (23) assign -> . ID = boolean
+    (28) funcall -> . ID ( paramlist )
+    (24) unary -> . increment
+    (25) unary -> . decrement
+    (36) while -> . WHILE boolean { block }
+    (37) for -> . FOR ( initialization , boolean , assign ) { block }
+    (38) for -> . FOR ( initialization , boolean , unary ) { block }
+    (39) for -> . FOR ID IN RANGE ( expression , expression ) { block }
+    (32) if -> . IF boolean { block } elif
+    (40) print -> . PRINT ( plist )
+    (26) increment -> . ID INCRMNT
+    (27) decrement -> . ID DECRMNT
+
+    VARIABLE        shift and go to state 17
+    ID              shift and go to state 18
+    WHILE           shift and go to state 21
+    FOR             shift and go to state 22
+    IF              shift and go to state 23
+    PRINT           shift and go to state 24
+
+    block                          shift and go to state 152
+    statement                      shift and go to state 7
+    declaration                    shift and go to state 8
+    initialization                 shift and go to state 9
+    assign                         shift and go to state 10
+    funcall                        shift and go to state 11
+    unary                          shift and go to state 12
+    while                          shift and go to state 13
+    for                            shift and go to state 14
+    if                             shift and go to state 15
+    print                          shift and go to state 16
+    increment                      shift and go to state 19
+    decrement                      shift and go to state 20
+
+state 146
+
+    (34) elif -> ELSE { block . }
+
+    }               shift and go to state 153
+
+
+state 147
+
+    (4) function -> FUNCTION ID ( argument ) { block RETURN boolean . }
+    (44) boolean -> boolean . OR boolterm
+
+    }               shift and go to state 154
+    OR              shift and go to state 62
+
+
+state 148
+
+    (73) ternary -> ( boolean ) ? ( boolean : boolean . )
+    (44) boolean -> boolean . OR boolterm
+
+    )               shift and go to state 155
+    OR              shift and go to state 62
+
+
+state 149
+
+    (37) for -> FOR ( initialization , boolean , assign ) { . block }
+    (10) block -> . statement block
+    (11) block -> . statement
+    (12) statement -> . declaration
+    (13) statement -> . initialization
+    (14) statement -> . assign
+    (15) statement -> . funcall
+    (16) statement -> . unary
+    (17) statement -> . while
+    (18) statement -> . for
+    (19) statement -> . if
+    (20) statement -> . print
+    (21) declaration -> . VARIABLE ID
+    (22) initialization -> . VARIABLE ID = boolean
+    (23) assign -> . ID = boolean
+    (28) funcall -> . ID ( paramlist )
+    (24) unary -> . increment
+    (25) unary -> . decrement
+    (36) while -> . WHILE boolean { block }
+    (37) for -> . FOR ( initialization , boolean , assign ) { block }
+    (38) for -> . FOR ( initialization , boolean , unary ) { block }
+    (39) for -> . FOR ID IN RANGE ( expression , expression ) { block }
+    (32) if -> . IF boolean { block } elif
+    (40) print -> . PRINT ( plist )
+    (26) increment -> . ID INCRMNT
+    (27) decrement -> . ID DECRMNT
+
+    VARIABLE        shift and go to state 17
+    ID              shift and go to state 18
+    WHILE           shift and go to state 21
+    FOR             shift and go to state 22
+    IF              shift and go to state 23
+    PRINT           shift and go to state 24
+
+    initialization                 shift and go to state 9
+    assign                         shift and go to state 10
+    block                          shift and go to state 156
+    statement                      shift and go to state 7
+    declaration                    shift and go to state 8
+    funcall                        shift and go to state 11
+    unary                          shift and go to state 12
+    while                          shift and go to state 13
+    for                            shift and go to state 14
+    if                             shift and go to state 15
+    print                          shift and go to state 16
+    increment                      shift and go to state 19
+    decrement                      shift and go to state 20
+
+state 150
+
+    (38) for -> FOR ( initialization , boolean , unary ) { . block }
+    (10) block -> . statement block
+    (11) block -> . statement
+    (12) statement -> . declaration
+    (13) statement -> . initialization
+    (14) statement -> . assign
+    (15) statement -> . funcall
+    (16) statement -> . unary
+    (17) statement -> . while
+    (18) statement -> . for
+    (19) statement -> . if
+    (20) statement -> . print
+    (21) declaration -> . VARIABLE ID
+    (22) initialization -> . VARIABLE ID = boolean
+    (23) assign -> . ID = boolean
+    (28) funcall -> . ID ( paramlist )
+    (24) unary -> . increment
+    (25) unary -> . decrement
+    (36) while -> . WHILE boolean { block }
+    (37) for -> . FOR ( initialization , boolean , assign ) { block }
+    (38) for -> . FOR ( initialization , boolean , unary ) { block }
+    (39) for -> . FOR ID IN RANGE ( expression , expression ) { block }
+    (32) if -> . IF boolean { block } elif
+    (40) print -> . PRINT ( plist )
+    (26) increment -> . ID INCRMNT
+    (27) decrement -> . ID DECRMNT
+
+    VARIABLE        shift and go to state 17
+    ID              shift and go to state 18
+    WHILE           shift and go to state 21
+    FOR             shift and go to state 22
+    IF              shift and go to state 23
+    PRINT           shift and go to state 24
+
+    initialization                 shift and go to state 9
+    unary                          shift and go to state 12
+    block                          shift and go to state 157
+    statement                      shift and go to state 7
+    declaration                    shift and go to state 8
+    assign                         shift and go to state 10
+    funcall                        shift and go to state 11
+    while                          shift and go to state 13
+    for                            shift and go to state 14
+    if                             shift and go to state 15
+    print                          shift and go to state 16
+    increment                      shift and go to state 19
+    decrement                      shift and go to state 20
+
+state 151
+
+    (39) for -> FOR ID IN RANGE ( expression , expression ) . { block }
+
+    {               shift and go to state 158
+
+
+state 152
+
+    (33) elif -> ELSEIF boolean { block . } elif
+
+    }               shift and go to state 159
+
+
+state 153
+
+    (34) elif -> ELSE { block } .
+
+    VARIABLE        reduce using rule 34 (elif -> ELSE { block } .)
+    ID              reduce using rule 34 (elif -> ELSE { block } .)
+    WHILE           reduce using rule 34 (elif -> ELSE { block } .)
+    FOR             reduce using rule 34 (elif -> ELSE { block } .)
+    IF              reduce using rule 34 (elif -> ELSE { block } .)
+    PRINT           reduce using rule 34 (elif -> ELSE { block } .)
+    $end            reduce using rule 34 (elif -> ELSE { block } .)
+    }               reduce using rule 34 (elif -> ELSE { block } .)
+    RETURN          reduce using rule 34 (elif -> ELSE { block } .)
+
+
+state 154
+
+    (4) function -> FUNCTION ID ( argument ) { block RETURN boolean } .
+
+    FUNCTION        reduce using rule 4 (function -> FUNCTION ID ( argument ) { block RETURN boolean } .)
+    VARIABLE        reduce using rule 4 (function -> FUNCTION ID ( argument ) { block RETURN boolean } .)
+    ID              reduce using rule 4 (function -> FUNCTION ID ( argument ) { block RETURN boolean } .)
+    WHILE           reduce using rule 4 (function -> FUNCTION ID ( argument ) { block RETURN boolean } .)
+    FOR             reduce using rule 4 (function -> FUNCTION ID ( argument ) { block RETURN boolean } .)
+    IF              reduce using rule 4 (function -> FUNCTION ID ( argument ) { block RETURN boolean } .)
+    PRINT           reduce using rule 4 (function -> FUNCTION ID ( argument ) { block RETURN boolean } .)
+
+
+state 155
+
+    (73) ternary -> ( boolean ) ? ( boolean : boolean ) .
+
+    %               reduce using rule 73 (ternary -> ( boolean ) ? ( boolean : boolean ) .)
+    *               reduce using rule 73 (ternary -> ( boolean ) ? ( boolean : boolean ) .)
+    /               reduce using rule 73 (ternary -> ( boolean ) ? ( boolean : boolean ) .)
+    >               reduce using rule 73 (ternary -> ( boolean ) ? ( boolean : boolean ) .)
+    <               reduce using rule 73 (ternary -> ( boolean ) ? ( boolean : boolean ) .)
+    GTEQL           reduce using rule 73 (ternary -> ( boolean ) ? ( boolean : boolean ) .)
+    LTEQL           reduce using rule 73 (ternary -> ( boolean ) ? ( boolean : boolean ) .)
+    NOTEQL          reduce using rule 73 (ternary -> ( boolean ) ? ( boolean : boolean ) .)
+    BOOLEQL         reduce using rule 73 (ternary -> ( boolean ) ? ( boolean : boolean ) .)
+    +               reduce using rule 73 (ternary -> ( boolean ) ? ( boolean : boolean ) .)
+    -               reduce using rule 73 (ternary -> ( boolean ) ? ( boolean : boolean ) .)
+    AND             reduce using rule 73 (ternary -> ( boolean ) ? ( boolean : boolean ) .)
+    {               reduce using rule 73 (ternary -> ( boolean ) ? ( boolean : boolean ) .)
+    OR              reduce using rule 73 (ternary -> ( boolean ) ? ( boolean : boolean ) .)
+    VARIABLE        reduce using rule 73 (ternary -> ( boolean ) ? ( boolean : boolean ) .)
+    ID              reduce using rule 73 (ternary -> ( boolean ) ? ( boolean : boolean ) .)
+    WHILE           reduce using rule 73 (ternary -> ( boolean ) ? ( boolean : boolean ) .)
+    FOR             reduce using rule 73 (ternary -> ( boolean ) ? ( boolean : boolean ) .)
+    IF              reduce using rule 73 (ternary -> ( boolean ) ? ( boolean : boolean ) .)
+    PRINT           reduce using rule 73 (ternary -> ( boolean ) ? ( boolean : boolean ) .)
+    $end            reduce using rule 73 (ternary -> ( boolean ) ? ( boolean : boolean ) .)
+    }               reduce using rule 73 (ternary -> ( boolean ) ? ( boolean : boolean ) .)
+    RETURN          reduce using rule 73 (ternary -> ( boolean ) ? ( boolean : boolean ) .)
+    )               reduce using rule 73 (ternary -> ( boolean ) ? ( boolean : boolean ) .)
+    ,               reduce using rule 73 (ternary -> ( boolean ) ? ( boolean : boolean ) .)
+    :               reduce using rule 73 (ternary -> ( boolean ) ? ( boolean : boolean ) .)
+
+
+state 156
+
+    (37) for -> FOR ( initialization , boolean , assign ) { block . }
+
+    }               shift and go to state 160
+
+
+state 157
+
+    (38) for -> FOR ( initialization , boolean , unary ) { block . }
+
+    }               shift and go to state 161
+
+
+state 158
+
+    (39) for -> FOR ID IN RANGE ( expression , expression ) { . block }
+    (10) block -> . statement block
+    (11) block -> . statement
+    (12) statement -> . declaration
+    (13) statement -> . initialization
+    (14) statement -> . assign
+    (15) statement -> . funcall
+    (16) statement -> . unary
+    (17) statement -> . while
+    (18) statement -> . for
+    (19) statement -> . if
+    (20) statement -> . print
+    (21) declaration -> . VARIABLE ID
+    (22) initialization -> . VARIABLE ID = boolean
+    (23) assign -> . ID = boolean
+    (28) funcall -> . ID ( paramlist )
+    (24) unary -> . increment
+    (25) unary -> . decrement
+    (36) while -> . WHILE boolean { block }
+    (37) for -> . FOR ( initialization , boolean , assign ) { block }
+    (38) for -> . FOR ( initialization , boolean , unary ) { block }
+    (39) for -> . FOR ID IN RANGE ( expression , expression ) { block }
+    (32) if -> . IF boolean { block } elif
+    (40) print -> . PRINT ( plist )
+    (26) increment -> . ID INCRMNT
+    (27) decrement -> . ID DECRMNT
+
+    VARIABLE        shift and go to state 17
+    ID              shift and go to state 18
+    WHILE           shift and go to state 21
+    FOR             shift and go to state 22
+    IF              shift and go to state 23
+    PRINT           shift and go to state 24
+
+    block                          shift and go to state 162
+    statement                      shift and go to state 7
+    declaration                    shift and go to state 8
+    initialization                 shift and go to state 9
+    assign                         shift and go to state 10
+    funcall                        shift and go to state 11
+    unary                          shift and go to state 12
+    while                          shift and go to state 13
+    for                            shift and go to state 14
+    if                             shift and go to state 15
+    print                          shift and go to state 16
+    increment                      shift and go to state 19
+    decrement                      shift and go to state 20
+
+state 159
+
+    (33) elif -> ELSEIF boolean { block } . elif
+    (33) elif -> . ELSEIF boolean { block } elif
+    (34) elif -> . ELSE { block }
+    (35) elif -> . empty
+    (9) empty -> .
+
+    ELSEIF          shift and go to state 128
+    ELSE            shift and go to state 129
+    VARIABLE        reduce using rule 9 (empty -> .)
+    ID              reduce using rule 9 (empty -> .)
+    WHILE           reduce using rule 9 (empty -> .)
+    FOR             reduce using rule 9 (empty -> .)
+    IF              reduce using rule 9 (empty -> .)
+    PRINT           reduce using rule 9 (empty -> .)
+    $end            reduce using rule 9 (empty -> .)
+    }               reduce using rule 9 (empty -> .)
+    RETURN          reduce using rule 9 (empty -> .)
+
+    elif                           shift and go to state 163
+    empty                          shift and go to state 130
+
+state 160
+
+    (37) for -> FOR ( initialization , boolean , assign ) { block } .
+
+    VARIABLE        reduce using rule 37 (for -> FOR ( initialization , boolean , assign ) { block } .)
+    ID              reduce using rule 37 (for -> FOR ( initialization , boolean , assign ) { block } .)
+    WHILE           reduce using rule 37 (for -> FOR ( initialization , boolean , assign ) { block } .)
+    FOR             reduce using rule 37 (for -> FOR ( initialization , boolean , assign ) { block } .)
+    IF              reduce using rule 37 (for -> FOR ( initialization , boolean , assign ) { block } .)
+    PRINT           reduce using rule 37 (for -> FOR ( initialization , boolean , assign ) { block } .)
+    $end            reduce using rule 37 (for -> FOR ( initialization , boolean , assign ) { block } .)
+    }               reduce using rule 37 (for -> FOR ( initialization , boolean , assign ) { block } .)
+    RETURN          reduce using rule 37 (for -> FOR ( initialization , boolean , assign ) { block } .)
+
+
+state 161
+
+    (38) for -> FOR ( initialization , boolean , unary ) { block } .
+
+    VARIABLE        reduce using rule 38 (for -> FOR ( initialization , boolean , unary ) { block } .)
+    ID              reduce using rule 38 (for -> FOR ( initialization , boolean , unary ) { block } .)
+    WHILE           reduce using rule 38 (for -> FOR ( initialization , boolean , unary ) { block } .)
+    FOR             reduce using rule 38 (for -> FOR ( initialization , boolean , unary ) { block } .)
+    IF              reduce using rule 38 (for -> FOR ( initialization , boolean , unary ) { block } .)
+    PRINT           reduce using rule 38 (for -> FOR ( initialization , boolean , unary ) { block } .)
+    $end            reduce using rule 38 (for -> FOR ( initialization , boolean , unary ) { block } .)
+    }               reduce using rule 38 (for -> FOR ( initialization , boolean , unary ) { block } .)
+    RETURN          reduce using rule 38 (for -> FOR ( initialization , boolean , unary ) { block } .)
+
+
+state 162
+
+    (39) for -> FOR ID IN RANGE ( expression , expression ) { block . }
+
+    }               shift and go to state 164
+
+
+state 163
+
+    (33) elif -> ELSEIF boolean { block } elif .
+
+    VARIABLE        reduce using rule 33 (elif -> ELSEIF boolean { block } elif .)
+    ID              reduce using rule 33 (elif -> ELSEIF boolean { block } elif .)
+    WHILE           reduce using rule 33 (elif -> ELSEIF boolean { block } elif .)
+    FOR             reduce using rule 33 (elif -> ELSEIF boolean { block } elif .)
+    IF              reduce using rule 33 (elif -> ELSEIF boolean { block } elif .)
+    PRINT           reduce using rule 33 (elif -> ELSEIF boolean { block } elif .)
+    $end            reduce using rule 33 (elif -> ELSEIF boolean { block } elif .)
+    }               reduce using rule 33 (elif -> ELSEIF boolean { block } elif .)
+    RETURN          reduce using rule 33 (elif -> ELSEIF boolean { block } elif .)
+
+
+state 164
+
+    (39) for -> FOR ID IN RANGE ( expression , expression ) { block } .
+
+    VARIABLE        reduce using rule 39 (for -> FOR ID IN RANGE ( expression , expression ) { block } .)
+    ID              reduce using rule 39 (for -> FOR ID IN RANGE ( expression , expression ) { block } .)
+    WHILE           reduce using rule 39 (for -> FOR ID IN RANGE ( expression , expression ) { block } .)
+    FOR             reduce using rule 39 (for -> FOR ID IN RANGE ( expression , expression ) { block } .)
+    IF              reduce using rule 39 (for -> FOR ID IN RANGE ( expression , expression ) { block } .)
+    PRINT           reduce using rule 39 (for -> FOR ID IN RANGE ( expression , expression ) { block } .)
+    $end            reduce using rule 39 (for -> FOR ID IN RANGE ( expression , expression ) { block } .)
+    }               reduce using rule 39 (for -> FOR ID IN RANGE ( expression , expression ) { block } .)
+    RETURN          reduce using rule 39 (for -> FOR ID IN RANGE ( expression , expression ) { block } .)
+
+WARNING: 
+WARNING: Conflicts:
+WARNING: 
+WARNING: shift/reduce conflict for ) in state 76 resolved as shift
