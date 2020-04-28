@@ -1,5 +1,11 @@
 import ply.yacc as yacc
 import ply.lex as lex
+
+import sys
+import os
+currentDirectory = os.getcwd()
+sys.path.append(os.path.abspath(os.path.join(currentDirectory, '.')))
+
 import Compiler.tokenizer as tokenizer
 
 class SyntaxTree:

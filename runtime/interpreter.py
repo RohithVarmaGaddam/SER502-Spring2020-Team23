@@ -1,5 +1,8 @@
-from Compiler.parse import SyntaxTree
 import sys
+import os
+currentDirectory = os.getcwd()
+sys.path.append(os.path.abspath(os.path.join(currentDirectory, '.')))
+import Compiler.parse as parse
 
 function_hash={}
 class Evaluate:
@@ -522,12 +525,17 @@ def eval_arguments(li,tree):
         return []
     return li
 
-data = ""
-with open('../data/leapyear.ace', 'r') as file:
-    data = file.read()
-print(data)
-builder = SyntaxTree()
-builder.build(data)
-t = builder.tree
+def main(argv):
+    data = ""
+    filepath = os.path.abspath(os.path.join(currentDirectory, '.'))+"\\data\\"+argv
+    with open(filepath, 'r') as file:
+        data = file.read()
+    print(data)
+    builder = parse.SyntaxTree()
+    builder.build(data)
+    t = builder.tree
 
-eval_program(t)
+    eval_program(t)
+
+if __name__ == "__main__":
+   main(sys.argv[1])
