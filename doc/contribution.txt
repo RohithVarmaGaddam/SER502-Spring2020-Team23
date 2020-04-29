@@ -1,6 +1,6 @@
 We are planning to divide the work as follows :
-Lexer - Divya
+Lexer, parsing expressions - Divya
 Parser - Preeti
 Interpreter-
-    > Loops,conditional statements and functions - Rohith
-    > Expressions,Boolean and Unary Operators - Pradeep
+    >  Expressions,Conditions,Boolean and functions - Rohith
+    > Loops,conditional statements and Unary Operators - Pradeep

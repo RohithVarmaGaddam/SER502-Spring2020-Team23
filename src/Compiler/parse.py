@@ -1,3 +1,6 @@
+__author__ = 'Preethi'
+__version__ = '1.0'
+'This file contains parser'
 import ply.yacc as yacc
 import ply.lex as lex
 

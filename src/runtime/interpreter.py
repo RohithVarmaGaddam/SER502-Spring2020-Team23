@@ -1,4 +1,5 @@
 __author__ = 'Rohith Varma Gaddam','Pradeep'
+__version__ = '1.0'
 '''This file contains the evaluator which evaluates the parse tree'''
 import sys
 import os
@@ -538,7 +539,6 @@ def main(argv):
     builder = parse.SyntaxTree()
     builder.build(data)
     t = builder.tree
-
     print("Output of Program file:")
     eval_program(t)
 

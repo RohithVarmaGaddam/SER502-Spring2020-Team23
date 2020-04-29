@@ -1,3 +1,6 @@
+__author__ = 'Divya Polineni'
+__version__ = '1.0'
+'This file contains the tokenizer'
 import ply.lex as lex
 
 # List of token names.   This is always required
@@ -58,7 +61,7 @@ t_NOTEQL = r'!='
 
 # A regular expression rule with some action code
 def t_NUMBER(t):
-    r'[-]?\d+'
+    r'\d+'
     t.value = int(t.value)
     return t
 
