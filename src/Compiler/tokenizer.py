@@ -58,7 +58,7 @@ t_NOTEQL = r'!='
 
 # A regular expression rule with some action code
 def t_NUMBER(t):
-    r'\d+'
+    r'[-]?\d+'
     t.value = int(t.value)
     return t
 
