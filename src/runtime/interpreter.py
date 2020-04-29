@@ -532,7 +532,7 @@ def main(argv):
     if argv[-4:] != ".ace":
         sys.exit("Error :please provide .ace extension file")
     data = ""
-    filepath = os.path.abspath(os.path.join(currentDirectory, '..'))+"//data//"+argv
+    filepath = os.path.abspath(os.path.join(currentDirectory, '..'))+"/data/"+argv
     with open(filepath, 'r') as file:
         data = file.read()
     print(data)
