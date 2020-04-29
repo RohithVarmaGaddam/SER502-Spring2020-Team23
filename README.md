@@ -23,13 +23,13 @@ Requires Python 3.6 to be installed on the computer.
 
 ## Build & Run
 
-To run the your code written in ACE,switch to the folder contianing the "src/" and use the following command in a terminal or command prompt (Windows).  
+To run the your code written in ACE,switch to the folder **src** and use the following command in a terminal or command prompt (Windows).  
 
 The input file containing the source code written in ACE needs to be passed as an argument to the below command  
 
 >>  python runtime/interpreter.py **input-file**
 
-**input-file** should be placed in data folder
+**input-file** should be placed in **data** folder
 
 The output of the program will be displayed on the console/terminal window.  
 
