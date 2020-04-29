@@ -4,8 +4,11 @@ Project: Compiler and Virtual Machine for a Programming Language
 The team members are  
 
 Divya Polineni
+
 Prem Preeti Patnala
+
 Rohith Varma Gaddam
+
 Sree Pradeep kumar Relangi
 
 
