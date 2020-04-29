@@ -12,10 +12,10 @@ Sree Pradeep kumar Relangi
 The language developed is called "ACE" . The link to the youtube video is : 
 
 The structure of the repository is as follows:  
-data/ - consists the sample programs of ACE.
-src/Compiler/ - consists of the compiler.py which we use to compile and execute programs written in ACE.  
-src/Runtime/ - is composed of the interpreter.py which is the main runtime environment of ACE Language.
-doc/ - contains the documents.
+data/ - consists the sample programs of ACE
+src/Compiler/ - consists of the compiler.py which we use to compile and execute programs written in ACE
+src/Runtime/ - is composed of the interpreter.py which is the main runtime environment of ACE Language
+doc/ - contains the documents
 
 ## Installation
 
