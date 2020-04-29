@@ -25,6 +25,10 @@ doc/ - contains the documents.
 
 Requires Python 3.6 to be installed on the computer.
 
+Requires the package PLY. Install using the following command
+
+>> pip install ply
+
 ## Build & Run
 
 To run the your code written in ACE,switch to the folder **src** and use the following command in a terminal or command prompt (Windows).  
